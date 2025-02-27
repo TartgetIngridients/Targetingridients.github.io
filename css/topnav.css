@@ -1,0 +1,87 @@
+        body {
+
+            font-family: 'Poppins', 'Roboto', sans-serif;
+        }
+
+        .top-bar {
+            background-color: #025743;
+            border-top: 2px solid #FF671F;
+            height: 150px;
+            padding-bottom: 40px;
+        }
+
+        .nav-bar {
+            background-color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: calc(100% - 4rem);
+            /* 2rem padding on each side */
+            z-index: 1000;
+            margin-top: 20px;
+            font-size: 15px;
+            color: rgba(37, 34, 32, 0.9);
+        }
+
+        .nav-link {
+            padding: 1rem;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: #FF671F;
+        }
+
+        .active-nav {
+            background-color: #025743;
+            color: white;
+            border-radius: 5px;
+            height: 48.5px;
+            margin-top: 5px;
+            margin-bottom: 5px;
+        }
+
+        .contact-icon {
+            /* background: linear-gradient(90deg, #025743, #0a4015, #000000); */
+            background: linear-gradient(90deg, #025743, #000000);
+            background: #FF671F;
+
+            padding: 0.5rem;
+            border-radius: 10px;
+        }
+
+        .nav-container {
+            position: relative;
+        }
+
+        /* Rest of your existing styles... */
+        .hero-overlay {
+            /* background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)); */
+        }
+
+        .service-card {
+            transition: transform 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .dark-section {
+            background-color: #1a1a1a;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .dark-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 50px;
+            background: linear-gradient(to bottom right, transparent 49%, #1a1a1a 50%);
+        }

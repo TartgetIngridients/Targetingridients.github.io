@@ -1,0 +1,177 @@
+        body {
+
+            font-family: 'Poppins', 'Roboto', sans-serif;
+            
+        }
+
+        .top-bar {
+            background-color: #025743;
+            border-top: 2px solid #FF671F;
+            height: 150px;
+            padding-bottom: 40px;
+        }
+
+        .nav-bar {
+            background-color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: calc(100% - 4rem);
+            /* 2rem padding on each side */
+            z-index: 1000;
+            margin-top: 20px;
+            font-size: 15px;
+            color: rgba(37, 34, 32, 0.9);
+        }
+
+        .nav-link {
+            padding: 1rem;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: #FF671F;
+        }
+
+        .active-nav {
+            background-color: #025743;
+            color: white;
+            border-radius: 5px;
+            height: 48.5px;
+            margin-top: 5px;
+            margin-bottom: 5px;
+        }
+
+        .contact-icon {
+            /* background: linear-gradient(90deg, #025743, #0a4015, #000000); */
+            background: linear-gradient(90deg, #025743, #000000);
+            background: #FF671F;
+
+            padding: 0.5rem;
+            border-radius: 10px;
+        }
+
+        .nav-container {
+            position: relative;
+        }
+
+        /* Rest of your existing styles... */
+        .hero-overlay {
+            /* background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)); */
+        }
+
+        .service-card {
+            transition: transform 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .dark-section {
+            background-color: #1a1a1a;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .dark-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 50px;
+            background: linear-gradient(to bottom right, transparent 49%, #1a1a1a 50%);
+        }
+
+        /* Custom animations */
+        .swiper-slide-active.fade-slide img {
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        .swiper-slide-active.zoom-slide img {
+            animation: zoomIn 1s ease-in-out;
+        }
+
+        .swiper-slide-active.slide-left img {
+            animation: slideInLeft 1s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes zoomIn {
+            from {
+                transform: scale(1.2);
+            }
+
+            to {
+                transform: scale(1);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                transform: translateX(-50%);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        /* Custom Swiper navigation buttons */
+        .custom-swiper-button-next,
+        .custom-swiper-button-prev {
+            width: 40px;
+            height: 40px;
+            background-color: #16a34a;
+            /* Green-600 color */
+            border-radius: 50%;
+            /* Circular shape */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            /* White icon color */
+            transition: background-color 0.3s ease;
+        }
+
+        .custom-swiper-button-next::after,
+        .custom-swiper-button-prev::after {
+            font-size: 20px;
+            /* Adjust icon size */
+            font-weight: bold;
+        }
+
+        .custom-swiper-button-next:hover,
+        .custom-swiper-button-prev:hover {
+            background-color: #15803d;
+            /* Darker green on hover */
+        }
+
+        
+
+
+
+
+
+
+
+
+
+
+     
+       
