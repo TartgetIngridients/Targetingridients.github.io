@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <head>
+        <title>Target Ingredients Limited</title>
+        <link rel="icon" type="image/png" href="img/trlogo-removebg-preview.png">
+    </head>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+    <style>
+        body {
+            font-family: 'Poppins', 'Roboto', sans-serif;
+        }
+
+        .top-bar {
+            background-color: #025743;
+            border-top: 2px solid #FF671F;
+            height: auto; /* Adjusted to fit content */
+            padding-bottom: 20px; /* Reduced padding for mobile */
+        }
+
+        .nav-bar {
+            background-color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: calc(100% - 4rem);
+            z-index: 1000;
+            margin-top: 20px;
+            font-size: 15px;
+            color: rgba(37, 34, 32, 0.9);
+        }
+
+        .nav-link {
+            padding: 1rem;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: #FF671F;
+        }
+
+        .active-nav {
+            background-color: #025743;
+            color: white;
+            border-radius: 5px;
+            height: 48.5px;
+            margin-top: 5px;
+            margin-bottom: 5px;
+        }
+
+        .contact-icon {
+            background: #FF671F;
+            padding: 0.5rem;
+            border-radius: 10px;
+        }
+
+        .nav-container {
+            position: relative;
+        }
+
+        /* Mobile Menu */
+        #menu-toggle {
+            cursor: pointer;
+        }
+
+        #mobile-menu {
+            display: none;
+            flex-direction: column;
+            width: 100%;
+            background: white;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            padding: 1rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            z-index: 999;
+        }
+
+        #mobile-menu a {
+            padding: 0.75rem 1rem;
+            display: block;
+            text-align: center;
+        }
+
+        /* Only show mobile menu on small screens */
+        @media (max-width: 767px) {
+            .nav-bar {
+                position: relative;
+                top: 0;
+                left: 0;
+                transform: none;
+                width: 100%;
+                margin-top: 0;
+            }
+
+            #mobile-menu {
+                display: none; /* Hidden by default */
+            }
+
+            .nav-container {
+                position: static;
+            }
+
+            .top-bar {
+                height: auto; /* Adjust height for mobile */
+                padding-bottom: 10px; /* Reduce padding for mobile */
+            }
+
+            .contact-info {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                margin-top: 10px; /* Add spacing for mobile */
+            }
+
+            .contact-info div {
+                margin-top: 10px; /* Add spacing between contact items */
+            }
+        }
+
+        /* Keep desktop menu exactly the same */
+        @media (min-width: 768px) {
+            #mobile-menu {
+                display: none !important;
+            }
+
+            .contact-info {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+            }
+        }
+
+        /* Rest of your existing styles... */
+        .hero-overlay {
+            /* background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)); */
+        }
+
+        .service-card {
+            transition: transform 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .dark-section {
+            background-color: #1a1a1a;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .dark-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 50px;
+            background: linear-gradient(to bottom right, transparent 49%, #1a1a1a 50%);
+        }
+    </style>
+</head>
+
+<body class="bg-white">
+
+    <!-- Top Bar -->
+    <div class="top-bar text-white py-4">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+
+                <!-- Logo and Brand -->
+                <div class="flex items-center justify-between w-full md:w-auto">
+                    <img src="img/1.png" alt="Target Ingredients Logo" class="h-12 md:h-20" />
+
+                    <!-- Mobile Menu Button (Only visible on small screens) -->
+                    <button id="menu-toggle" class="block md:hidden text-white focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+
+                <!-- Contact Info (Visible on both mobile and desktop) -->
+                <div class="contact-info space-y-4 md:space-y-0 md:space-x-8 flex flex-col md:flex-row">
+                    <div>
+                        <div class="text-sm text-gray-400">Have any questions?</div>
+                        <div class="font-bold">+254-746-056-624</div>
+                    </div>
+                
+                    <div>
+                        <div class="text-sm text-gray-400">Our office address</div>
+                        <div class="font-bold text-sm md:text-base">Along Msa rd,Syokimau, Nairobi, Kenya</div>
+                    </div>
+                </div>
+
+
+
+                
+                
+            </div>
+        </div>
+
+        <!-- Navigation Container -->
+        <div class="nav-container">
+            <!-- Navigation Bar -->
+            <nav class="nav-bar">
+                <div class="container mx-auto px-4">
+                    <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+
+                        <!-- Desktop Menu (Hidden on mobile) -->
+                        <div class="hidden md:flex flex-wrap justify-center space-x-1">
+                            <a href="index.html" class="nav-link ">Home</a>
+                            <a href="aboutus.html" class="nav-link ">About Us</a>
+
+                            <a href="feeds.html" class="nav-link">Products</a>
+                            <a href="services.html" class="nav-link">Services</a>
+                            <a href="projects.html" class="nav-link">Projects</a>
+                            <a href="blog.html" class="nav-link active-nav">Blog</a>
+                            <a href="contact.html" class="nav-link">Contact</a>
+                        </div>
+
+                        <!-- Mobile Menu (Hidden by default, slides down when toggled) -->
+                        <div id="mobile-menu" class="hidden md:hidden flex-col bg-white shadow-lg p-4 rounded-lg">
+                            <a href="index.html" class="nav-link block py-2">Home</a>
+                            <a href="aboutus.html" class="nav-link block py-2">About Us</a>
+                            <a href="feeds.html" class="nav-link block py-2">Feeds</a>
+                            <a href="services.html" class="nav-link block py-2">Services</a>
+                            <a href="projects.html" class="nav-link block py-2">Projects</a>
+                            <a href="blog.html" class="nav-link block py-2">Blog</a>
+                            <a href="contact.html" class="nav-link block py-2">Contact</a>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+
+
+
+
+
+
+
+    <!-- Navigation Container -->
+    <div class="nav-container" style="padding: 40px; margin-top:70px;">
+        <style>
+            /* Remove shadow from the section and its children */
+            .relative.h-96,
+            .relative.h-96 * {
+                box-shadow: none !important;
+            }
+        </style>
+        <!-- Navigation Bar -->
+        <!-- Hero Section -->
+        <!-- Swiper JavaScript (Place this before your closing </body> tag) -->
+
+        <section  class="relative h-96" style="height: 450px; box-shadow: none !important;">
+            <!-- Slider main container -->
+            <div class="swiper mySwiper h-full">
+                <div class="swiper-wrapper">
+                    <!-- Slide 1 - Fade Effect -->
+                    <div class="swiper-slide fade-slide relative">
+                        <!-- Image Wrapper -->
+                        <div class="h-full w-full">
+                            <img src="img/targetcow-01.png" alt="Gardener" class="w-full h-full object-cover rounded-lg" style="max-width: 100%; height: 100%;" />
+                        </div>
+        
+                        <!-- Overlay -->
+                        <div class="absolute inset-0"></div>
+        
+                        <!-- Social icons at the top left -->
+                        <div class="absolute top-8 left-8 flex space-x-3">
+                            <a href="#" class="text-white text-xl"><i class="fab fa-facebook"></i></a>
+                            <a href="#" class="text-white text-xl"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="text-white text-xl"><i class="fab fa-instagram"></i></a>
+                        </div>
+        
+                        <!-- Title at the bottom left -->
+                        <div class="absolute bottom-8 left-8 text-white font-bold" style="font-size: 25px; border-radius: 10px;">
+                            The Science Behind Nutrition ..                            
+                            <a href="readmore.html" style="font-size: 15px; text-decoration: underline;">read more</a>
+                            <h2 class="text-start" style="font-size: 15px; border-radius: 10px;">Author: John Doe</h2>
+                        </div>
+        
+                        <!-- Date at the bottom right -->
+                        <div class="absolute bottom-8 right-8 text-white text-lg">
+                            February 11, 2025
+                        </div>
+                    </div>
+                </div>
+            </div>
+     
+        
+
+            <style>
+                /* Custom animations */
+                @keyframes fadeIn {
+                    from {
+                        opacity: 0;
+                    }
+
+                    to {
+                        opacity: 1;
+                    }
+                }
+
+                @keyframes zoomIn {
+                    from {
+                        transform: scale(1.2);
+                    }
+
+                    to {
+                        transform: scale(1);
+                    }
+                }
+
+                @keyframes slideInLeft {
+                    from {
+                        transform: translateX(-50%);
+                        opacity: 0;
+                    }
+
+                    to {
+                        transform: translateX(0);
+                        opacity: 1;
+                    }
+                }
+
+                /* Custom Swiper navigation buttons */
+                .custom-swiper-button-next,
+                .custom-swiper-button-prev {
+                    width: 40px;
+                    height: 40px;
+                    background-color: #16a34a;
+                    /* Green-600 color */
+                    border-radius: 50%;
+                    /* Circular shape */
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    color: white;
+                    /* White icon color */
+                    transition: background-color 0.3s ease;
+                }
+
+                .custom-swiper-button-next::after,
+                .custom-swiper-button-prev::after {
+                    font-size: 20px;
+                    /* Adjust icon size */
+                    font-weight: bold;
+                }
+
+                .custom-swiper-button-next:hover,
+                .custom-swiper-button-prev:hover {
+                    background-color: #15803d;
+                    /* Darker green on hover */
+                }
+            </style>
+        </section>
+    </div>
+
+
+
+
+
+
+
+
+
+    <main class="container mx-auto px-4 py-8" style="margin-top:50px;">
+        <section class="mb-12">
+            <h2 class="text-3xl font-bold mb-6 text-center">Latest News </h2>
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="bg-white shadow-md rounded-lg overflow-hidden">
+                    <img src="img/farmer1.jpg" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="font-bold text-xl mb-2">Choosing the Right Feed: A Guide for Farmer Owners</h3>
+                        <p class="text-gray-600">This article explains how a well-balanced diet impacts animal health
+                            and productivity....</p>
+                        <a href="#"
+                            style="font-size: 12px;border-radius: 10px; font-weight: 400;text-decoration: underline;">read
+                            more</h2></i></a>
+
+                    </div>
+                </div>
+                <div class="bg-white shadow-md rounded-lg overflow-hidden">
+                    <img src="img/images-2-1.jpeg" alt="News Image" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="font-bold text-xl mb-2">How Quality Feed Boosts Animal Health and Farm Profitability
+                        </h3>
+                        <p class="text-gray-600">Explains how using high-quality feed improves overall animal health,
+                            reduces....</p>
+                        <a href="#"
+                            style="font-size: 12px;border-radius: 10px; font-weight: 400;text-decoration: underline;">read
+                            more</h2></i></a>
+
+                    </div>
+                </div>
+                <div class="bg-white shadow-md rounded-lg overflow-hidden">
+                    <img src="img/targetcow-01.png" alt="News Image" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="font-bold text-xl mb-2">The Role of Organic and Non-GMO Feeds in Sustainable Farming
+                        </h3>
+                        <p class="text-gray-600">Discusses the rising demand for organic feeds and their benefits in
+                            sustainable....</p>
+                        <a href="readmore.html"
+                            style="font-size: 12px;border-radius: 10px; font-weight: 400;text-decoration: underline;">read
+                            more</h2></i></a>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!--  -->
+
+    </main>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Partners Section -->
+    <!-- <section class="py-16">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-8">Our Partners</h2>
+            <div class="grid grid-cols-2 md:grid-cols-6 gap-8">
+                <img src="img/avitasa.png" alt="Partner 1" class="w-full" />
+                <img src="img/EVONIK.png" alt="Partner 2" class="w-full" />
+                <img src="img/basf.png" alt="Partner 3" class="w-full" /> -->
+    <!-- Add more partner logos -->
+    <!-- </div>
+        </div>
+    </section> -->
+
+    <!-- Footer -->
+    <footer class="relative text-white py-12" style="background-color: #025743;">
+        <div class="container mx-auto px-4">
+            <div class="text-center">
+                <img src="img/Target Ingredients A 3.png" alt="Logo" class="mx-auto mb-4"
+                    style="width: 150px; height: 60px;" />
+                <div style="margin-top: 20px;">
+                    <div class="text-sm text-gray-400">Have any questions?</div>
+                    <div class="font-bold"> +254-746-056-624</div>
+                </div>
+                <div style="margin-top: 20px;">
+                    <div class="text-sm text-gray-400">Our office address</div>
+                    <div class="font-bold">Premier Bldg Suite 1, Along Msa Rd, Syokimau, Kenya</div>
+                </div>
+                <div class="flex justify-center space-x-4" style="margin-top: 20px;">
+                    <a href="#" class="hover:text-green-400"><i class="fab fa-facebook"></i></a>
+                    <a href="#" class="hover:text-green-400"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="hover:text-green-400"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Corner Image -->
+        <img src="img/trlogo-removebg-preview 1.png" alt="Corner Image" class="absolute bottom-0 right-0 opacity-10"
+            style="width: 310px; height: 350px;">
+
+        <!-- Scroll to top button -->
+        <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})"
+            class="fixed bottom-8 right-8 hover:bg-green-600 text-white rounded-full p-3 shadow-lg transition-all duration-300"
+            style="opacity: 0; visibility: hidden; background-color: #FFCA0D;" id="scrollToTop">
+            <i class="fas fa-arrow-up"></i>
+        </button>
+    </footer>
+
+    <script>
+        // Show/hide scroll to top button based on scroll position
+        window.onscroll = function () {
+            const button = document.getElementById('scrollToTop');
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                button.style.opacity = '1';
+                button.style.visibility = 'visible';
+            } else {
+                button.style.opacity = '0';
+                button.style.visibility = 'hidden';
+            }
+        };
+    </script>
+        <script>
+            document.getElementById("menu-toggle").addEventListener("click", function () {
+                var menu = document.getElementById("mobile-menu");
+                if (menu.style.display === "block") {
+                    menu.style.display = "none";
+                } else {
+                    menu.style.display = "block";
+                }
+            });
+        </script>
+</body>
+
+</html>

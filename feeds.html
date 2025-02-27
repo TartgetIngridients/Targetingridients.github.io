@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Target Ingredients Limited</title>
+    <link rel="icon" type="image/png" href="img/trlogo-removebg-preview.png">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <style>
+        body {
+            font-family: 'Poppins', 'Roboto', sans-serif;
+        }
+
+        .top-bar {
+            background-color: #025743;
+            border-top: 2px solid #FF671F;
+            padding-bottom: 20px;
+        }
+
+        .nav-bar {
+            background-color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: calc(100% - 4rem);
+            z-index: 1000;
+            margin-top: 20px;
+            font-size: 15px;
+            color: rgba(37, 34, 32, 0.9);
+        }
+
+        .nav-link {
+            padding: 1rem;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: #FF671F;
+        }
+
+        .active-nav {
+            background-color: #025743;
+            color: white;
+            border-radius: 5px;
+            height: 48.5px;
+            margin-top: 5px;
+            margin-bottom: 5px;
+        }
+
+        .contact-icon {
+            background: #FF671F;
+            padding: 0.5rem;
+            border-radius: 10px;
+        }
+
+        .nav-container {
+            position: relative;
+        }
+
+        #menu-toggle {
+            cursor: pointer;
+        }
+
+        #mobile-menu {
+            display: none;
+            flex-direction: column;
+            width: 100%;
+            background: white;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            padding: 1rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            z-index: 999;
+        }
+
+        #mobile-menu a {
+            padding: 0.75rem 1rem;
+            display: block;
+            text-align: center;
+        }
+
+        @media (max-width: 767px) {
+            .nav-bar {
+                position: relative;
+                top: 0;
+                left: 0;
+                transform: none;
+                width: 100%;
+                margin-top: 0;
+            }
+
+            #mobile-menu {
+                display: none;
+            }
+
+            .nav-container {
+                position: static;
+            }
+
+            .top-bar {
+                padding-bottom: 10px;
+            }
+
+            .contact-info {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                margin-top: 10px;
+            }
+
+            .contact-info div {
+                margin-top: 10px;
+            }
+        }
+
+        @media (min-width: 768px) {
+            #mobile-menu {
+                display: none !important;
+            }
+
+            .contact-info {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+            }
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 2rem;
+            padding: 2rem 0;
+            margin-top: 100px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 8px;
+            padding: 1rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+
+        .product-title {
+            font-size: 16px;
+            font-weight: bold;
+            margin: 1rem 0;
+            color: #025743;
+            text-align: center;
+        }
+
+        .order-button {
+            background-color: #FF671F;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 200px;
+            margin-top: auto;
+            align-self: center;
+        }
+
+        .order-button:hover {
+            background-color: #e55c1b;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            z-index: 2000;
+            backdrop-filter: blur(4px);
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 5% auto;
+            padding: 2.5rem;
+            width: 90%;
+            max-width: 600px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            position: relative;
+            animation: modalSlideIn 0.3s ease-out;
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                transform: translateY(-30px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 24px;
+            color: #666;
+            cursor: pointer;
+            transition: color 0.3s ease;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+
+        .close:hover {
+            color: #FF671F;
+            background-color: #f5f5f5;
+        }
+
+        #modalTitle {
+            color: #025743;
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid #e5e5e5;
+        }
+
+        #modalBenefits h3 {
+            color: #FF671F;
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .benefits-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .benefits-list li {
+            position: relative;
+            padding: 0.75rem 0;
+            padding-left: 2rem;
+            border-bottom: 1px solid #f0f0f0;
+            color: #444;
+            display: flex;
+            align-items: center;
+        }
+
+        .benefits-list li:last-child {
+            border-bottom: none;
+        }
+
+        .benefits-list li::before {
+            content: "•";
+            color: #025743;
+            font-size: 1.5rem;
+            position: absolute;
+            left: 0.5rem;
+        }
+
+        @media (max-width: 1200px) {
+            .products-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        @media (max-width: 992px) {
+            .products-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .products-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .product-card {
+                padding: 0.5rem;
+            }
+
+            .product-image {
+                height: 150px;
+            }
+
+            .product-title {
+                font-size: 14px;
+            }
+
+            .order-button {
+                width: 150px;
+                padding: 0.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .product-card {
+                padding: 0.5rem;
+            }
+
+            .product-image {
+                height: 120px;
+            }
+
+            .product-title {
+                font-size: 12px;
+            }
+
+            .order-button {
+                width: 100%;
+                padding: 0.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-white">
+    <div class="top-bar text-white py-4">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+                <div class="flex items-center justify-between w-full md:w-auto">
+                    <img src="img/1.png" alt="Target Ingredients Logo" class="h-12 md:h-20" />
+                    <button id="menu-toggle" class="block md:hidden text-white focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+                <div class="contact-info space-y-4 md:space-y-0 md:space-x-8 flex flex-col md:flex-row">
+                    <div>
+                        <div class="text-sm text-gray-400">Have any questions?</div>
+                        <div class="font-bold">+254-746-056-624</div>
+                    </div>
+                    <div>
+                        <div class="text-sm text-gray-400">Our office address</div>
+                        <div class="font-bold text-sm md:text-base">Along Msa rd,Syokimau, Nairobi, Kenya</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="nav-container" style="margin-top: -20px;">
+        <nav class="nav-bar">
+            <div class="container mx-auto px-4">
+                <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+                    <div class="hidden md:flex flex-wrap justify-center space-x-1">
+                        <a href="index.html" class="nav-link">Home</a>
+                        <a href="aboutus.html" class="nav-link">About Us</a>
+                        <a href="feeds.html" class="nav-link active-nav">Products</a>
+                        <a href="services.html" class="nav-link">Services</a>
+                        <a href="projects.html" class="nav-link">Projects</a>
+                        <a href="blog.html" class="nav-link">Blog</a>
+                        <a href="contact.html" class="nav-link">Contact</a>
+                    </div>
+                    <div id="mobile-menu" class="hidden md:hidden flex-col bg-white shadow-lg p-4 rounded-lg">
+                        <a href="index.html" class="nav-link block py-2">Home</a>
+                        <a href="aboutus.html" class="nav-link block py-2">About Us</a>
+                        <a href="feeds.html" class="nav-link block py-2">Feeds</a>
+                        <a href="services.html" class="nav-link block py-2">Services</a>
+                        <a href="projects.html" class="nav-link block py-2">Projects</a>
+                        <a href="blog.html" class="nav-link block py-2">Blog</a>
+                        <a href="contact.html" class="nav-link block py-2">Contact</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <div class="container mx-auto px-4">
+        <div class="products-grid">
+            <div class="product-card">
+                <img src="img/dcp.PNG" alt="DCP Feed" class="product-image">
+                <div class="product-title">DCP (Dicalcium Phosphate)</div>
+                <button class="order-button" onclick="showProductDetails('DCP')">View Details</button>
+            </div>
+            <div class="product-card">
+                <img src="img/methione.PNG" alt="Methionine Feed" class="product-image">
+                <div class="product-title">Methionine</div>
+                <button class="order-button" onclick="showProductDetails('Methionine')">View Details</button>
+            </div>
+            <div class="product-card">
+                <img src="img/mcp.PNG" alt="MCP Feed" class="product-image">
+                <div class="product-title">Monocalcium Phosphate</div>
+                <button class="order-button" onclick="showProductDetails('MCP')">View Details</button>
+            </div>
+            <div class="product-card">
+                <img src="img/choline.PNG" alt="Choline Chloride Feed" class="product-image">
+                <div class="product-title">Choline Chloride</div>
+                <button class="order-button" onclick="showProductDetails('Choline')">View Details</button>
+            </div>
+            <div class="product-card">
+                <img src="img/lycine.PNG" alt="Lysine" class="product-image">
+                <div class="product-title">L-Lysine</div>
+                <button class="order-button" onclick="showProductDetails('Lysine')">View Details</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mx-auto px-4">
+        <h2 style="color: #FF671F;" class="text-3xl font-bold mb-6 text-center">Premixes</h2>
+        <div class="products-grid" style="margin-top: -20px;">
+            <div class="product-card">
+                <img src="img/nutri (1).jpeg" alt="DCP Feed" class="product-image">
+                <div class="product-title">Nutri Entrum Mycotoxin</div>
+                <button class="order-button" onclick="showProductDetails('Nutri Entrum')">View Details</button>
+            </div>
+            <div class="product-card">
+                <img src="img/fronting.jpeg" alt="Methionine Feed" class="product-image">
+                <div class="product-title">Target Ingridients  Premix</div>
+                <button class="order-button" onclick="showProductDetails('Target Ingridients')">View Details</button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Who We Serve Section -->
+    <div class="mt-12" style="padding: 40px;color: #FF671F;margin-top: -20px;">
+        <h2 class="text-3xl font-bold text-center mb-6">More of our products</h2>
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+            <div class="bg-white rounded-lg shadow-lg p-6">
+                <h3 class="text-lg font-bold text-green-700 mb-2">Feed Premixes
+                </h3>
+                <p class="text-gray-600">
+                    1. Egg Boost Layer Premix <br>
+                    2. Grow Boost Growers Premix <br>
+                    3. Pigpro Sow Premix <br>
+                    4. Milk Boost High Phosphorus <br>
+                    5. Mineral Supplement <br>
+                    6. Chickpro Starter Premix <br>
+                    7. Milk Master Dairy Premix <br>
+                    8. Mature Boost Stock Lick Mineral Supplement <br>
+                    9. Meat Max Broiler Premix
+                </p>
+            </div>
+
+            <div class="bg-white rounded-lg shadow-lg p-6">
+                <h3 class="text-lg font-bold text-green-700 mb-2">Amino Acids</h3>
+                <p class="text-gray-600">
+                    1. Lysine <br>
+                    2. Acidifiers <br>
+                    3. DI-Methionine <br>
+                    4. Salinomycin <br>
+                    5. Threonine
+                </p>
+            </div>
+
+            <div class="bg-white rounded-lg shadow-lg p-6">
+                <h3 class="text-lg font-bold text-green-700 mb-2">
+                    Toxin Binder</h3>
+                <p class="text-gray-600">
+                    1.Nutri Toxin Binder
+                </p>
+            </div>
+
+            <div class="bg-white rounded-lg shadow-lg p-6">
+                <h3 class="text-lg font-bold text-green-700 mb-2">Mineral Supplements</h3>
+                <p class="text-gray-600">
+                    1. Dicalcium Granules White (DCP) <br>
+                    2. Monocalcium Phosphate (MCP) <br>
+                    3. Feed Lime <br>
+                    4. Sodium Chloride (Feed Grade) <br>
+                    5. Choline Chloride <br>
+                    6. Sodium Bicarbonate
+                </p>
+            </div>
+
+
+
+        </div>
+    </div>
+
+    <div id="productModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2 id="modalTitle"></h2>
+            <div id="modalBenefits"></div>
+        </div>
+    </div>
+
+    <footer class="relative text-white py-12" style="background-color: #025743;">
+        <div class="container mx-auto px-4">
+            <div class="text-center">
+                <img src="img/Target Ingredients A 3.png" alt="Logo" class="mx-auto mb-4"
+                    style="width: 150px; height: 60px;" />
+                <div style="margin-top: 20px;">
+                    <div class="text-sm text-gray-400">Have any questions?</div>
+                    <div class="font-bold"> +254-746-056-624</div>
+                </div>
+                <div style="margin-top: 20px;">
+                    <div class="text-sm text-gray-400">Our office address</div>
+                    <div class="font-bold">Premier Bldg Suite 1, Along Msa Rd, Syokimau, Kenya</div>
+                </div>
+                <div class="flex justify-center space-x-4" style="margin-top: 20px;">
+                    <a href="#" class="hover:text-green-400"><i class="fab fa-facebook"></i></a>
+                    <a href="#" class="hover:text-green-400"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="hover:text-green-400"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+        <img src="img/trlogo-removebg-preview 1.png" alt="Corner Image" class="absolute bottom-0 right-0 opacity-10"
+            style="width: 310px; height: 350px;">
+        <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})"
+            class="fixed bottom-8 right-8 hover:bg-green-600 text-white rounded-full p-3 shadow-lg transition-all duration-300"
+            style="opacity: 0; visibility: hidden; background-color: #FFCA0D;" id="scrollToTop">
+            <i class="fas fa-arrow-up"></i>
+        </button>
+    </footer>
+
+    <script>
+        const productDetails = {
+            'DCP': {
+                title: 'DCP (Dicalcium Phosphate)',
+                benefits: [
+                    'Contains minimum 21% calcium and 18% phosphorus',
+                    'Easily digestible and absorbable by livestock',
+                    'Accelerates growth and development',
+                    'Shortens fattening period',
+                    'Promotes rapid weight gain'
+                ]
+            },
+            'Methionine': {
+                title: 'Methionine',
+                benefits: [
+                    'Essential amino acid for protein synthesis',
+                    'Critical for livestock and poultry growth',
+                    'Regulates animal metabolism',
+                    'Improves feed efficiency',
+                    'Enhances immune system function'
+                ]
+            },
+            'MCP': {
+                title: 'Monocalcium Phosphate (MCP)',
+                benefits: [
+                    'Contains minimum 22% calcium and 13-16% phosphorus',
+                    'Excellent phosphate feed additive',
+                    'Highly efficient mineral supplement',
+                    'Promotes strong bone development',
+                    'Improves overall animal health'
+                ]
+            },
+            'Choline': {
+                title: 'Choline Chloride',
+                benefits: [
+                    'Essential water-soluble B-complex vitamin',
+                    'Promotes normal development',
+                    'Enhances animal health',
+                    'Required for maximum growth',
+                    'Most economical form of choline'
+                ]
+            },
+            'Lysine': {
+                title: 'Lysine',
+                benefits: [
+                    'Promotes animal growth',
+                    'Improves resistance to disease',
+                    'Used for livestock poultry aquatic product',
+                    'Young stock cultivation',
+                ]
+            },
+            'Nutri Entrum': {
+                title: 'Nutri Entrum Mycotoxin',
+                benefits: [
+                    'Cattle Feed Premix: Supports quality milk and beef production while boosting health and immunity.',
+                    'Swine Feed Premix: Enhances growth and health for sows and weaners.',
+                    'Poultry Feed Premix: Improves egg production, growth rates, and overall health for layers, broilers,and chicks.',
+                ]
+            },
+            'Target Ingridients': {
+                title: 'Target Ingridients Premix',
+                benefits: [
+                    'Cattle Feed Premix: Supports quality milk and beef production while boosting health and immunity.',
+                    'Swine Feed Premix: Enhances growth and health for sows and weaners.',
+                    'Poultry Feed Premix: Improves egg production, growth rates, and overall health for layers, broilers,and chicks.',
+                ]
+            }
+        };
+
+        document.addEventListener("DOMContentLoaded", function () {
+            document.getElementById("productModal").style.display = "none";
+        });
+
+        function showProductDetails(product) {
+            const modal = document.getElementById("productModal");
+            const modalTitle = document.getElementById("modalTitle");
+            const modalBenefits = document.getElementById("modalBenefits");
+
+            modalTitle.textContent = productDetails[product].title;
+
+            let benefitsHtml = '<h3>Benefits:</h3><ul class="benefits-list">';
+            productDetails[product].benefits.forEach((benefit, index) => {
+                benefitsHtml += `<li>${index + 1}. ${benefit}</li>`;
+            });
+            benefitsHtml += "</ul>";
+
+            modalBenefits.innerHTML = benefitsHtml;
+            modal.style.display = "block";
+        }
+
+        function closeModal() {
+            document.getElementById('productModal').style.display = 'none';
+        }
+
+        window.onclick = function (event) {
+            const modal = document.getElementById('productModal');
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+
+        window.onscroll = function () {
+            const button = document.getElementById('scrollToTop');
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                button.style.opacity = '1';
+                button.style.visibility = 'visible';
+            } else {
+                button.style.opacity = '0';
+                button.style.visibility = 'hidden';
+            }
+        };
+
+        document.getElementById("menu-toggle").addEventListener("click", function () {
+            var menu = document.getElementById("mobile-menu");
+            if (menu.style.display === "block") {
+                menu.style.display = "none";
+            } else {
+                menu.style.display = "block";
+            }
+        });
+    </script>
+</body>
+
+</html>

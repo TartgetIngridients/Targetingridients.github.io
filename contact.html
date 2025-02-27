@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <head>
+        <title>Target Ingredients Limited</title>
+        <link rel="icon" type="image/png" href="img/trlogo-removebg-preview.png">
+    </head>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+    <style>
+        body {
+            font-family: 'Poppins', 'Roboto', sans-serif !important;
+        }
+
+        .top-bar {
+            background-color: #025743;
+            border-top: 2px solid #FF671F;
+            height: auto; /* Adjusted to fit content */
+            padding-bottom: 20px; /* Reduced padding for mobile */
+        }
+
+        .nav-bar {
+            background-color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: calc(100% - 4rem);
+            z-index: 1000;
+            margin-top: 20px;
+            font-size: 15px;
+            color: rgba(37, 34, 32, 0.9);
+        }
+
+        .nav-link {
+            padding: 1rem;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: #FF671F;
+        }
+
+        .active-nav {
+            background-color: #025743;
+            color: white;
+            border-radius: 5px;
+            height: 48.5px;
+            margin-top: 5px;
+            margin-bottom: 5px;
+        }
+
+        .contact-icon {
+            background: #FF671F;
+            padding: 0.5rem;
+            border-radius: 10px;
+        }
+
+        .nav-container {
+            position: relative;
+        }
+
+        /* Mobile Menu */
+        #menu-toggle {
+            cursor: pointer;
+        }
+
+        #mobile-menu {
+            display: none;
+            flex-direction: column;
+            width: 100%;
+            background: white;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            padding: 1rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            z-index: 999;
+        }
+
+        #mobile-menu a {
+            padding: 0.75rem 1rem;
+            display: block;
+            text-align: center;
+        }
+
+        /* Only show mobile menu on small screens */
+        @media (max-width: 767px) {
+            .nav-bar {
+                position: relative;
+                top: 0;
+                left: 0;
+                transform: none;
+                width: 100%;
+                margin-top: 0;
+            }
+
+            #mobile-menu {
+                display: none; /* Hidden by default */
+            }
+
+            .nav-container {
+                position: static;
+            }
+
+            .top-bar {
+                height: auto; /* Adjust height for mobile */
+                padding-bottom: 10px; /* Reduce padding for mobile */
+            }
+
+            .contact-info {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                margin-top: 10px; /* Add spacing for mobile */
+            }
+
+            .contact-info div {
+                margin-top: 10px; /* Add spacing between contact items */
+            }
+        }
+
+        /* Keep desktop menu exactly the same */
+        @media (min-width: 768px) {
+            #mobile-menu {
+                display: none !important;
+            }
+
+            .contact-info {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+            }
+        }
+
+        /* Rest of your existing styles... */
+        .hero-overlay {
+            /* background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)); */
+        }
+
+        .service-card {
+            transition: transform 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .dark-section {
+            background-color: #1a1a1a;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .dark-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 50px;
+            background: linear-gradient(to bottom right, transparent 49%, #1a1a1a 50%);
+        }
+    </style>
+</head>
+
+<body class="bg-white" >
+
+    <!-- Top Bar -->
+    <div class="top-bar text-white py-4" style="font-family: Poppins;">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+
+                <!-- Logo and Brand -->
+                <div class="flex items-center justify-between w-full md:w-auto">
+                    <img src="img/1.png" alt="Target Ingredients Logo" class="h-12 md:h-20" />
+
+                    <!-- Mobile Menu Button (Only visible on small screens) -->
+                    <button id="menu-toggle" class="block md:hidden text-white focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+
+                <!-- Contact Info (Visible on both mobile and desktop) -->
+                <div class="contact-info space-y-4 md:space-y-0 md:space-x-8 flex flex-col md:flex-row">
+                    <div>
+                        <div class="text-sm text-gray-400">Have any questions?</div>
+                        <div class="font-bold">+254-746-056-624</div>
+                    </div>
+                
+                    <div>
+                        <div class="text-sm text-gray-400">Our office address</div>
+                        <div class="font-bold text-sm md:text-base">Along Msa rd,Syokimau, Nairobi, Kenya</div>
+                    </div>
+                </div>
+
+
+
+                
+                
+            </div>
+        </div>
+
+        <!-- Navigation Container -->
+        <div class="nav-container" >
+            <!-- Navigation Bar -->
+            <nav class="nav-bar">
+                <div class="container mx-auto px-4">
+                    <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+
+                        <!-- Desktop Menu (Hidden on mobile) -->
+                        <div class="hidden md:flex flex-wrap justify-center space-x-1">
+                            <a href="index.html" class="nav-link ">Home</a>
+                            <a href="aboutus.html" class="nav-link ">About Us</a>
+
+                            <a href="feeds.html" class="nav-link">Products</a>
+                            <a href="services.html" class="nav-link">Services</a>
+                            <a href="projects.html" class="nav-link">Projects</a>
+                            <a href="blog.html" class="nav-link">Blog</a>
+                            <a href="contact.html" class="nav-link active-nav">Contact</a>
+                        </div>
+
+                        <!-- Mobile Menu (Hidden by default, slides down when toggled) -->
+                        <div id="mobile-menu" class="hidden md:hidden flex-col bg-white shadow-lg p-4 rounded-lg">
+                            <a href="index.html" class="nav-link block py-2">Home</a>
+                            <a href="aboutus.html" class="nav-link block py-2">About Us</a>
+                            <a href="feeds.html" class="nav-link block py-2">Feeds</a>
+                            <a href="services.html" class="nav-link block py-2">Services</a>
+                            <a href="projects.html" class="nav-link block py-2">Projects</a>
+                            <a href="blog.html" class="nav-link block py-2">Blog</a>
+                            <a href="contact.html" class="nav-link block py-2">Contact</a>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+
+
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Modern Contact Form</title>
+        <style>
+            * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins','Roboto', sans-serif;
+        }
+
+        .contact-section {
+            padding: 4rem 1rem;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+
+            .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .contact-wrapper {
+            display: flex;
+            background: white;
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+      
+        }
+
+        .form-section {
+            flex: 1;
+            padding: 3rem;
+        }
+
+        .form-header {
+            margin-bottom: 2rem;
+        }
+
+        .form-header h2 {
+            font-size: 2rem;
+            color: #1e293b;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-header p {
+            color: #64748b;
+            line-height: 1.5;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+
+
+.input-icon {
+    position: absolute;
+    left: 1rem;
+    color: #94a3b8;
+    pointer-events: none;
+    z-index: 1;
+}
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #475569;
+            font-size: 0.875rem;
+        }
+
+        .form-control {
+    width: 100%;
+    padding: 0.75rem 1rem 0.75rem 2.5rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.75rem;
+    background-color: #f8fafc;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+        textarea.form-control {
+            height: 150px;
+            resize: none;
+            padding-top: 1rem;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 0.875rem 1.5rem;
+            background:#FF671F;
+            color: white;
+            border: none;
+            border-radius: 0.75rem;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .submit-btn:hover {
+            background: linear-gradient(to right, #43eb25, #169200);
+            transform: translateY(-1px);
+        }
+
+        .submit-btn svg {
+            width: 1.25rem;
+            height: 1.25rem;
+            transition: transform 0.3s ease;
+        }
+
+        .submit-btn:hover svg {
+            transform: translateX(4px);
+        }
+
+        .image-section {
+            flex: 1;
+            position: relative;
+            display: none;
+        }
+
+        .image-section img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .image-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top right, rgba(59, 130, 246, 0.2), transparent);
+        }
+
+        @media (min-width: 1024px) {
+            .image-section {
+                display: block;
+            }
+            
+            .form-section {
+                padding: 4rem;
+            }
+        }
+
+        @media (max-width: 1023px) {
+            .contact-wrapper {
+                flex-direction: column;
+                margin: 1rem;
+            }
+        }
+        </style>
+    </head>
+    <body>
+        <section class="contact-section" style=" margin-top: 50px;" >
+            <div class="container" >
+                <div class="contact-wrapper">
+                    <!-- Form Section -->
+                    <div class="form-section"  >
+                        <div class="form-header">
+                            <h2>Get in touch</h2>
+                            <p>We'd love to hear from you. Send us a message and we'll respond as soon as possible.</p>
+                        </div>
+                        
+                        <form action="contact_process.php" method="POST">
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <svg style="margin-top:15px;"  class="input-icon"  width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                    <circle cx="12" cy="7" r="4"></circle>
+                                </svg>
+                                <input type="text" id="name" name="name" class="form-control" required>
+                            </div>
+    
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <svg style="margin-top:15px;" class="input-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                                    <polyline points="22,6 12,13 2,6"></polyline>
+                                </svg>
+                                <input type="email" id="email" name="email" class="form-control" required>
+                            </div>
+    
+                            <div class="form-group">
+                                <label for="message">Message</label>
+                                <svg style="margin-top:15px;" class="input-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                                </svg>
+                                <textarea id="message" name="message" class="form-control" required></textarea>
+                            </div>
+    
+                            <button type="submit" class="submit-btn" style="background-color: #FF671F;">
+                                Send Message
+                                <svg  width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <line x1="22" y1="2" x2="11" y2="13"></line>
+                                    <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                                </svg>
+                            </button>
+                        </form>
+                    </div>
+    
+                    <!-- Image Section -->
+                    <div class="image-section">
+                        <img src="img/brown_chickens.jpg" alt="Contact Image">
+                        <div class="image-overlay"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </body>
+    </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Footer -->
+    <footer class="relative text-white py-12" style="background-color: #025743;">
+        <div class="container mx-auto px-4">
+            <div class="text-center">
+                <img src="img/Target Ingredients A 3.png" alt="Logo" class="mx-auto mb-4"
+                    style="width: 150px; height: 60px;" />
+                <div style="margin-top: 20px;">
+                    <div class="text-sm text-gray-400">Have any questions?</div>
+                    <div class="font-bold"> +254-746-056-624</div>
+                </div>
+                <div style="margin-top: 20px;">
+                    <div class="text-sm text-gray-400">Our office address</div>
+                    <div class="font-bold">Premier Bldg Suite 1, Along Msa Rd, Syokimau, Kenya</div>
+                </div>
+                <div class="flex justify-center space-x-4" style="margin-top: 20px;">
+                    <a href="#" class="hover:text-green-400"><i class="fab fa-facebook"></i></a>
+                    <a href="#" class="hover:text-green-400"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="hover:text-green-400"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Corner Image -->
+        <img src="img/trlogo-removebg-preview 1.png" alt="Corner Image" class="absolute bottom-0 right-0 opacity-10"
+            style="width: 310px; height: 350px;">
+
+        <!-- Scroll to top button -->
+        <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})"
+            class="fixed bottom-8 right-8 hover:bg-green-600 text-white rounded-full p-3 shadow-lg transition-all duration-300"
+            style="opacity: 0; visibility: hidden; background-color: #FFCA0D;" id="scrollToTop">
+            <i class="fas fa-arrow-up"></i>
+        </button>
+    </footer>
+
+    <script>
+        // Show/hide scroll to top button based on scroll position
+        window.onscroll = function () {
+            const button = document.getElementById('scrollToTop');
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                button.style.opacity = '1';
+                button.style.visibility = 'visible';
+            } else {
+                button.style.opacity = '0';
+                button.style.visibility = 'hidden';
+            }
+        };
+    </script>
+        <script>
+            document.getElementById("menu-toggle").addEventListener("click", function () {
+                var menu = document.getElementById("mobile-menu");
+                if (menu.style.display === "block") {
+                    menu.style.display = "none";
+                } else {
+                    menu.style.display = "block";
+                }
+            });
+        </script>
+</body>
+
+</html>

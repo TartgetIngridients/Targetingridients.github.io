@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <head>
+        <title>Target Ingredients Limited</title>
+        <link rel="icon" type="image/png" href="img/trlogo-removebg-preview.png">
+    </head>
+
+
+    <!-- <title>Target Ingredients Limited</title> -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+    <style>
+        body {
+            font-family: 'Poppins', 'Roboto', sans-serif;
+        }
+
+        .top-bar {
+            background-color: #025743;
+            border-top: 2px solid #FF671F;
+            height: auto; /* Adjusted to fit content */
+            padding-bottom: 20px; /* Reduced padding for mobile */
+        }
+
+        .nav-bar {
+            background-color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: calc(100% - 4rem);
+            z-index: 1000;
+            margin-top: 20px;
+            font-size: 15px;
+            color: rgba(37, 34, 32, 0.9);
+        }
+
+        .nav-link {
+            padding: 1rem;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: #FF671F;
+        }
+
+        .active-nav {
+            background-color: #025743;
+            color: white;
+            border-radius: 5px;
+            height: 48.5px;
+            margin-top: 5px;
+            margin-bottom: 5px;
+        }
+
+        .contact-icon {
+            background: #FF671F;
+            padding: 0.5rem;
+            border-radius: 10px;
+        }
+
+        .nav-container {
+            position: relative;
+        }
+
+        /* Mobile Menu */
+        #menu-toggle {
+            cursor: pointer;
+        }
+
+        #mobile-menu {
+            display: none;
+            flex-direction: column;
+            width: 100%;
+            background: white;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            padding: 1rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            z-index: 999;
+        }
+
+        #mobile-menu a {
+            padding: 0.75rem 1rem;
+            display: block;
+            text-align: center;
+        }
+
+        /* Only show mobile menu on small screens */
+        @media (max-width: 767px) {
+            .nav-bar {
+                position: relative;
+                top: 0;
+                left: 0;
+                transform: none;
+                width: 100%;
+                margin-top: 0;
+            }
+
+            #mobile-menu {
+                display: none; /* Hidden by default */
+            }
+
+            .nav-container {
+                position: static;
+            }
+
+            .top-bar {
+                height: auto; /* Adjust height for mobile */
+                padding-bottom: 10px; /* Reduce padding for mobile */
+            }
+
+            .contact-info {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                margin-top: 10px; /* Add spacing for mobile */
+            }
+
+            .contact-info div {
+                margin-top: 10px; /* Add spacing between contact items */
+            }
+        }
+
+        /* Keep desktop menu exactly the same */
+        @media (min-width: 768px) {
+            #mobile-menu {
+                display: none !important;
+            }
+
+            .contact-info {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+            }
+        }
+
+        /* Rest of your existing styles... */
+        .hero-overlay {
+            /* background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)); */
+        }
+
+        .service-card {
+            transition: transform 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .dark-section {
+            background-color: #1a1a1a;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .dark-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 50px;
+            background: linear-gradient(to bottom right, transparent 49%, #1a1a1a 50%);
+        }
+    </style>
+</head>
+
+<body class="bg-white">
+
+    <!-- Top Bar -->
+    <div class="top-bar text-white py-4">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+
+                <!-- Logo and Brand -->
+                <div class="flex items-center justify-between w-full md:w-auto">
+                    <img src="img/1.png" alt="Target Ingredients Logo" class="h-12 md:h-20" />
+
+                    <!-- Mobile Menu Button (Only visible on small screens) -->
+                    <button id="menu-toggle" class="block md:hidden text-white focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+
+                <!-- Contact Info (Visible on both mobile and desktop) -->
+                <div class="contact-info space-y-4 md:space-y-0 md:space-x-8 flex flex-col md:flex-row">
+                    <div>
+                        <div class="text-sm text-gray-400">Have any questions?</div>
+                        <div class="font-bold">+254-746-056-624</div>
+                    </div>
+                
+                    <div>
+                        <div class="text-sm text-gray-400">Our office address</div>
+                        <div class="font-bold text-sm md:text-base">Along Msa rd,Syokimau, Nairobi, Kenya</div>
+                    </div>
+                </div>
+
+
+
+                
+                
+            </div>
+        </div>
+
+        <!-- Navigation Container -->
+        <div class="nav-container">
+            <!-- Navigation Bar -->
+            <nav class="nav-bar">
+                <div class="container mx-auto px-4">
+                    <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+
+                        <!-- Desktop Menu (Hidden on mobile) -->
+                        <div class="hidden md:flex flex-wrap justify-center space-x-1">
+                            <a href="index.html" class="nav-link active-nav">Home</a>
+                            <a href="aboutus.html" class="nav-link ">About Us</a>
+                            <a href="feeds.html" class="nav-link">Products</a>
+                            <a href="services.html" class="nav-link">Services</a>
+                            <a href="projects.html" class="nav-link">Projects</a>
+                            <a href="blog.html" class="nav-link">Blog</a>
+                            <a href="contact.html" class="nav-link">Contact</a>
+                        </div>
+
+                        <!-- Mobile Menu (Hidden by default, slides down when toggled) -->
+                        <div id="mobile-menu" class="hidden md:hidden flex-col bg-white shadow-lg p-4 rounded-lg">
+                            <a href="index.html" class="nav-link block py-2">Home</a>
+                            <a href="aboutus.html" class="nav-link block py-2">About Us</a>
+                            <a href="feeds.html" class="nav-link block py-2">Feeds</a>
+                            <a href="services.html" class="nav-link block py-2">Services</a>
+                            <a href="projects.html" class="nav-link block py-2">Projects</a>
+                            <a href="blog.html" class="nav-link block py-2">Blog</a>
+                            <a href="contact.html" class="nav-link block py-2">Contact</a>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+
+
+    <!-- Navigation Container -->
+    <div class="nav-container">
+        <!-- Navigation Bar -->
+        <!-- Hero Section -->
+        <!-- Swiper JavaScript (Place this before your closing </body> tag) -->
+
+        <section class="relative h-96" style="height: 600px;">
+            <!-- Slider main container -->
+            <div class="swiper mySwiper h-full">
+                <div class="swiper-wrapper">
+                    <!-- Slide 1 - Fade Effect -->
+                    <div class="swiper-slide fade-slide">
+                        <img src="img/Targetall-01.png" alt="Gardener" class="w-full h-full object-cover" />
+                        <div class="absolute inset-0 hero-overlay flex items-center" style="margin-left: 50px;">
+                            <div class="container mx-auto px-6 mt-16">
+                                <h1 class="text-4xl md:text-6xl text-white font-bold mb-4" style="font-size: 45px;">
+                                    Established with a clear vision
+                                </h1>
+
+
+                                <a href="feeds.html">
+                                    <button class="bg-green-600 text-white px-6 py-3 "
+                                        style="background-color: #025743;">
+                                        Feed's Solution
+                                    </button>
+                                </a>
+
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 2 - Zoom Effect -->
+                    <div class="swiper-slide zoom-slide">
+                        <img src="img/brown_chickens.jpg" alt="Gardener" class="w-full h-full object-cover" />
+                        <div class="absolute inset-0 hero-overlay flex items-center" style="margin-left: 50px;">
+                            <div class="container mx-auto px-6 mt-16">
+                                <h1 class="text-4xl md:text-6xl text-white font-bold mb-4" style="font-size: 40px;">
+                                    High quality Products
+                                </h1>
+
+                                <a href="services.html">
+                                    <button class="bg-green-600 text-white px-6 py-3 "
+                                        style="background-color: #025743;">
+                                        Learn More
+                                    </button>
+                                </a>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 3 - Slide-in from Left Effect -->
+                    <div class="swiper-slide slide-left">
+                        <img src="img/ban3.jpg" alt="Gardener" class="w-full h-full object-cover" />
+                        <div class="absolute inset-0 hero-overlay flex items-center" style="margin-left: 50px;">
+                            <div class="container mx-auto px-6 mt-16">
+                                <h1 class="text-4xl md:text-6xl text-white font-bold mb-4" style="font-size: 40px;">
+                                    Integrity, innovation, and service excellence
+                                </h1>
+
+                                <a href="blog.html">
+                                    <button class="bg-green-600 text-white px-6 py-3 "
+                                        style="background-color: #025743;">
+                                        Discover More
+                                    </button>
+                                </a>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Navigation buttons -->
+                <div class="swiper-button-next custom-swiper-button-next"></div>
+                <div class="swiper-button-prev custom-swiper-button-prev"></div>
+            </div>
+
+
+            <style>
+                /* Custom animations */
+                .swiper-slide-active.fade-slide img {
+                    animation: fadeIn 1s ease-in-out;
+                }
+
+                .swiper-slide-active.zoom-slide img {
+                    animation: zoomIn 1s ease-in-out;
+                }
+
+                .swiper-slide-active.slide-left img {
+                    animation: slideInLeft 1s ease-in-out;
+                }
+
+                @keyframes fadeIn {
+                    from {
+                        opacity: 0;
+                    }
+
+                    to {
+                        opacity: 1;
+                    }
+                }
+
+                @keyframes zoomIn {
+                    from {
+                        transform: scale(1.2);
+                    }
+
+                    to {
+                        transform: scale(1);
+                    }
+                }
+
+                @keyframes slideInLeft {
+                    from {
+                        transform: translateX(-50%);
+                        opacity: 0;
+                    }
+
+                    to {
+                        transform: translateX(0);
+                        opacity: 1;
+                    }
+                }
+
+                /* Custom Swiper navigation buttons */
+                .custom-swiper-button-next,
+                .custom-swiper-button-prev {
+                    width: 40px;
+                    height: 40px;
+                    background-color: #025743;
+                    /* Green-600 color */
+                    border-radius: 50%;
+                    /* Circular shape */
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    color: white;
+                    /* White icon color */
+                    transition: background-color 0.3s ease;
+                }
+
+                .custom-swiper-button-next::after,
+                .custom-swiper-button-prev::after {
+                    font-size: 20px;
+                    /* Adjust icon size */
+                    font-weight: bold;
+                }
+
+                .custom-swiper-button-next:hover,
+                .custom-swiper-button-prev:hover {
+                    background-color: #15803d;
+                    /* Darker green on hover */
+                }
+            </style>
+
+            <script>
+                document.addEventListener("DOMContentLoaded", function () {
+                    var swiper = new Swiper(".mySwiper", {
+                        loop: true,
+                        autoplay: {
+                            delay: 4000,
+                            disableOnInteraction: false,
+                        },
+                        navigation: {
+                            nextEl: ".custom-swiper-button-next",
+                            prevEl: ".custom-swiper-button-prev",
+                        },
+                    });
+                });
+            </script>
+        </section>
+    </div>
+
+    <!-- Services Grid -->
+    <section class="container mx-auto px-4 py-16">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="service-card bg-green-600 p-8 text-white rounded-lg"
+                style="background: linear-gradient(135deg, #025743, #00FF7F);">
+                <i class="fas fa-pills text-4xl mb-4"></i>
+                <h3 class="text-xl font-bold mb-2">Feed Additives</h3>
+                <p class="mb-4">Range of feed additives</p>
+                <button class="border border-white text-white px-4 py-2 rounded">Learn More</button>
+            </div>
+            <div class="service-card bg-green-600 p-8 text-white rounded-lg"
+                style="background: linear-gradient(135deg, #025743, #00FF7F);">
+                <i class="fas fa-cubes text-4xl mb-4"></i>
+                <h3 class="text-xl font-bold mb-2">Feed Raw Materials</h3>
+                <p class="mb-4">Wide range of feed raw materials.</p>
+                <button class="border border-white text-white px-4 py-2 rounded">Learn More</button>
+            </div>
+            <div class="service-card bg-green-600 p-8 text-white rounded-lg"
+                style="background: linear-gradient(135deg, #025743, #00FF7F);">
+                <i class="fas fa-seedling text-4xl mb-4"></i>
+                <h3 class="text-xl font-bold mb-2">Animal Feed Supplements</h3>
+                <p class="mb-4">Nutritional
+                    quality and safety of animal feed.</p>
+                <button class="border border-white text-white px-4 py-2 rounded">Learn More</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Garden Time Section -->
+    <section class="relative py-16 bg-gray-100">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                <div class="bg-gray-300 rounded-full h-6 w-full overflow-hidden">
+                    <div id="progress-bar"
+                        class="bg-green-600 h-full text-white text-center text-sm leading-6 rounded-full"
+                        style="width: 0%">0%</div>
+                </div>
+                <div>
+                    <h2 class="text-3xl font-bold mb-4">It's Time for the best Results</h2>
+                    <p class="text-gray-600 mb-6">We get a 90% feedback about our product and how it has helped famers.
+                    </p>
+                    <button class="bg-green-600 text-white px-6 py-3 rounded-lg">Discover More</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            let progressBar = document.getElementById("progress-bar");
+            let progress = 0;
+            let target = 90; // Target percentage
+            let speed = 20; // Speed in milliseconds
+
+            function updateProgress() {
+                if (progress < target) {
+                    progress++;
+                    progressBar.style.width = progress + "%";
+                    progressBar.textContent = progress + "%";
+                    setTimeout(updateProgress, speed);
+                }
+            }
+
+            updateProgress();
+        });
+    </script>
+
+    <!-- Greenhouse Section -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div>
+                    <h2 class="text-3xl font-bold mb-6">Turn your farm into a productive place</h2>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-check-circle text-green-600"></i>
+                            <span>Nutritional value</span>
+                        </div>
+
+                        <!-- Add more items -->
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-4" style="margin-top: 20px;">
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-check-circle text-green-600"></i>
+                            <span>Promoting growth</span>
+                        </div>
+
+                        <!-- Add more items -->
+                    </div>
+
+
+
+                    <div class="grid grid-cols-2 gap-4" style="margin-top: 20px;">
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-check-circle text-green-600"></i>
+                            <span>Protein sources</span>
+                        </div>
+
+                        <!-- Add more items -->
+                    </div>
+
+
+                    <div class="grid grid-cols-2 gap-4" style="margin-top: 20px;">
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-check-circle text-green-600"></i>
+                            <span>Mold inhibitors</span>
+                        </div>
+
+                        <!-- Add more items -->
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-4" style="margin-top: 20px;">
+
+
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-check-circle text-green-600"></i>
+                            <span>Digestion and disease prevention in livestock,poultry,
+                                and pets.</span>
+                        </div>
+                    </div>
+                </div>
+                <img src="img/feed1.jpg" alt="Greenhouse" class="rounded-lg shadow-lg" />
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="dark-section py-16 text-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold mb-8">Our Recent Amazing Projects</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <img src="img/Smartfeed_Logo.jpg" alt="Project 1" class="w-full h-48 object-cover rounded-lg" />
+                <img src="img/Sustainable-Feed-Workshop-Banner-1200x600.jpg" alt="Project 2"
+                    class="w-full h-48 object-cover rounded-lg" />
+                <img src="img/OIP (1).jpg" alt="Project 3" class="w-full h-48 object-cover rounded-lg" />
+                <img src="img/maxresdefault.jpg" alt="Project 4" class="w-full h-48 object-cover rounded-lg" />
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="py-16 bg-gray-100">
+        <div class="container mx-auto px-4">
+            <!-- <h2 class="text-3xl font-bold text-center mb-8">Our Services</h2> -->
+
+            <!-- Service Boxes -->
+            <!-- <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+            <div class="bg-white rounded-lg shadow-lg p-6">
+                <div class="text-center">
+                    <h3 class="text-xl font-bold mb-4">Feed Additives</h3>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-lg shadow-lg p-6">
+                <div class="text-center">
+                    <h3 class="text-xl font-bold mb-4">Feed Raw Materials</h3>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-lg shadow-lg p-6">
+                <div class="text-center">
+                    <h3 class="text-xl font-bold mb-4">Animal Feed Supplements</h3>
+                </div>
+            </div>  
+
+            <div class="bg-white rounded-lg shadow-lg p-6">
+                <div class="text-center">
+                    <h3 class="text-xl font-bold mb-4">MilkMaster Dairy Premix</h3>
+                </div>
+            </div>
+        </div> -->
+
+            <!-- Who We Serve Section -->
+            <div class="mt-12">
+                <h2 class="text-3xl font-bold text-center mb-6">Why Choose Us</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="bg-white rounded-lg shadow-lg p-6">
+                        <h3 class="text-lg font-bold text-green-700 mb-2">1.Reliability 
+                        </h3>
+                        <p class="text-gray-600">With the years on experience in the industry we have proven track record of delivering quality products and services on time , everytime</p>
+                    </div>
+
+                    <div class="bg-white rounded-lg shadow-lg p-6">
+                        <h3 class="text-lg font-bold text-green-700 mb-2">2.Timely Delivery</h3>
+                        <p class="text-gray-600">Our efficient logistics on strong supply chain ensures that your orders are delivered on time , helping you maintain smooth Operations.</p>
+                    </div>
+
+                    <div class="bg-white rounded-lg shadow-lg p-6">
+                        <h3 class="text-lg font-bold text-green-700 mb-2">3. ⁠Competitive pricing and value</h3>
+                        <p class="text-gray-600">Competitive prices without compromising on quality ensuring you get the best value for your investment</p>
+                    </div>
+
+                    <div class="bg-white rounded-lg shadow-lg p-6">
+                        <h3 class="text-lg font-bold text-green-700 mb-2">4. ⁠Offering Strong after sales reports we dont just sell</h3>
+                        <p class="text-gray-600">We support ! Our dedicated customers service team is always ready to assist you with any inquiries and issues</p>
+                    </div>
+
+                    <div class="bg-white rounded-lg shadow-lg p-6">
+                        <h3 class="text-lg font-bold text-green-700 mb-2">5. ⁠Quality & certification</h3>
+                        <p class="text-gray-600">Standards and hold certificates such as Kebs and vmd ensuring premium Quality in every product and service</p>
+                    </div>
+
+                    <div class="bg-white rounded-lg shadow-lg p-6">
+                        <h3 class="text-lg font-bold text-green-700 mb-2">5. ⁠Customers testimonials and case study </h3>
+                        <p class="text-gray-600">Don’t just take our word for it - see what our satisfied clients have to say about our reliability and service</p>
+                    </div>
+
+
+
+
+                    <a href="services.html" class="block bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition"
+                        style="background-color: #FF671F;">
+                        <div class="text-center">
+                            <h3 class="text-xl " style="color: #ffffff;margin-top: 40px;margin-bottom: 40px;">View our
+                                Services</h3>
+                        </div>
+                    </a>
+
+                </div>
+            </div>
+
+
+
+            <!-- Stats Section -->
+            <section class="py-16" style="background-color: #ffffff;margin-top: 40px;">
+                <div class="container mx-auto px-4">
+                    <div class="flex flex-wrap justify-around">
+                        <div class="text-center p-4">
+                            <div class="text-4xl font-bold text-green-600">37</div>
+                            <div class="text-gray-600">Years Experience</div>
+                        </div>
+                        <div class="text-center p-4">
+                            <div class="text-4xl font-bold text-green-600">270</div>
+                            <div class="text-gray-600">Projects Done</div>
+                        </div>
+                        <div class="text-center p-4">
+                            <div class="text-4xl font-bold text-green-600">15</div>
+                            <div class="text-gray-600">Active Projects</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </section>
+
+
+    <!-- Footer -->
+    <footer class="relative text-white py-12" style="background-color: #025743;">
+        <div class="container mx-auto px-4">
+            <div class="text-center">
+                <img src="img/Target Ingredients A 3.png" alt="Logo" class="mx-auto mb-4"
+                    style="width: 150px; height: 60px;" />
+                <div style="margin-top: 20px;">
+                    <div class="text-sm text-gray-400">Have any questions?</div>
+                    <div class="font-bold"> +254-746-056-624</div>
+                </div>
+                <div style="margin-top: 20px;">
+                    <div class="text-sm text-gray-400">Our office address</div>
+                    <div class="font-bold">Premier Bldg Suite 1, Along Msa Rd, Syokimau, Kenya</div>
+                </div>
+                <div class="flex justify-center space-x-4" style="margin-top: 20px;">
+                    <a href="#" class="hover:text-green-400"><i class="fab fa-facebook"></i></a>
+                    <a href="#" class="hover:text-green-400"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="hover:text-green-400"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Corner Image -->
+        <img src="img/trlogo-removebg-preview 1.png" alt="Corner Image" class="absolute bottom-0 right-0 opacity-10"
+            style="width: 310px; height: 350px;">
+
+        <!-- Scroll to top button -->
+        <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})"
+            class="fixed bottom-8 right-8 hover:bg-green-600 text-white rounded-full p-3 shadow-lg transition-all duration-300"
+            style="opacity: 0; visibility: hidden; background-color: #FFCA0D;" id="scrollToTop">
+            <i class="fas fa-arrow-up"></i>
+        </button>
+    </footer>
+    <script>
+        document.getElementById("menu-toggle").addEventListener("click", function () {
+            var menu = document.getElementById("mobile-menu");
+            if (menu.style.display === "block") {
+                menu.style.display = "none";
+            } else {
+                menu.style.display = "block";
+            }
+        });
+    </script>
+
+    <script>
+        // Show/hide scroll to top button based on scroll position
+        window.onscroll = function () {
+            const button = document.getElementById('scrollToTop');
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                button.style.opacity = '1';
+                button.style.visibility = 'visible';
+            } else {
+                button.style.opacity = '0';
+                button.style.visibility = 'hidden';
+            }
+        };
+    </script>
+</body>
+
+</html>

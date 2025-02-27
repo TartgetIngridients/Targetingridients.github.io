@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <head>
+        <title>Target Ingredients Limited</title>
+        <link rel="icon" type="image/png" href="img/trlogo-removebg-preview.png">
+    </head>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+    <style>
+        body {
+            font-family: 'Poppins', 'Roboto', sans-serif;
+        }
+
+        .top-bar {
+            background-color: #025743;
+            border-top: 2px solid #FF671F;
+            height: auto; /* Adjusted to fit content */
+            padding-bottom: 20px; /* Reduced padding for mobile */
+        }
+
+        .nav-bar {
+            background-color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: calc(100% - 4rem);
+            z-index: 1000;
+            margin-top: 20px;
+            font-size: 15px;
+            color: rgba(37, 34, 32, 0.9);
+        }
+
+        .nav-link {
+            padding: 1rem;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: #FF671F;
+        }
+
+        .active-nav {
+            background-color: #025743;
+            color: white;
+            border-radius: 5px;
+            height: 48.5px;
+            margin-top: 5px;
+            margin-bottom: 5px;
+        }
+
+        .contact-icon {
+            background: #FF671F;
+            padding: 0.5rem;
+            border-radius: 10px;
+        }
+
+        .nav-container {
+            position: relative;
+        }
+
+        /* Mobile Menu */
+        #menu-toggle {
+            cursor: pointer;
+        }
+
+        #mobile-menu {
+            display: none;
+            flex-direction: column;
+            width: 100%;
+            background: white;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            padding: 1rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            z-index: 999;
+        }
+
+        #mobile-menu a {
+            padding: 0.75rem 1rem;
+            display: block;
+            text-align: center;
+        }
+
+        /* Only show mobile menu on small screens */
+        @media (max-width: 767px) {
+            .nav-bar {
+                position: relative;
+                top: 0;
+                left: 0;
+                transform: none;
+                width: 100%;
+                margin-top: 0;
+            }
+
+            #mobile-menu {
+                display: none; /* Hidden by default */
+            }
+
+            .nav-container {
+                position: static;
+            }
+
+            .top-bar {
+                height: auto; /* Adjust height for mobile */
+                padding-bottom: 10px; /* Reduce padding for mobile */
+            }
+
+            .contact-info {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                margin-top: 10px; /* Add spacing for mobile */
+            }
+
+            .contact-info div {
+                margin-top: 10px; /* Add spacing between contact items */
+            }
+        }
+
+        /* Keep desktop menu exactly the same */
+        @media (min-width: 768px) {
+            #mobile-menu {
+                display: none !important;
+            }
+
+            .contact-info {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+            }
+        }
+
+        /* Rest of your existing styles... */
+        .hero-overlay {
+            /* background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)); */
+        }
+
+        .service-card {
+            transition: transform 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .dark-section {
+            background-color: #1a1a1a;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .dark-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 50px;
+            background: linear-gradient(to bottom right, transparent 49%, #1a1a1a 50%);
+        }
+    </style>
+</head>
+
+<body class="bg-white">
+
+    <!-- Top Bar -->
+    <div class="top-bar text-white py-4">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+
+                <!-- Logo and Brand -->
+                <div class="flex items-center justify-between w-full md:w-auto">
+                    <img src="img/1.png" alt="Target Ingredients Logo" class="h-12 md:h-20" />
+
+                    <!-- Mobile Menu Button (Only visible on small screens) -->
+                    <button id="menu-toggle" class="block md:hidden text-white focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+
+                <!-- Contact Info (Visible on both mobile and desktop) -->
+                <div class="contact-info space-y-4 md:space-y-0 md:space-x-8 flex flex-col md:flex-row">
+                    <div>
+                        <div class="text-sm text-gray-400">Have any questions?</div>
+                        <div class="font-bold">+254-746-056-624</div>
+                    </div>
+                
+                    <div>
+                        <div class="text-sm text-gray-400">Our office address</div>
+                        <div class="font-bold text-sm md:text-base">Along Msa rd,Syokimau, Nairobi, Kenya</div>
+                    </div>
+                </div>
+
+
+
+                
+                
+            </div>
+        </div>
+
+        <!-- Navigation Container -->
+        <div class="nav-container">
+            <!-- Navigation Bar -->
+            <nav class="nav-bar">
+                <div class="container mx-auto px-4">
+                    <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+
+                        <!-- Desktop Menu (Hidden on mobile) -->
+                        <div class="hidden md:flex flex-wrap justify-center space-x-1">
+                            <a href="index.html" class="nav-link ">Home</a>
+                            <a href="aboutus.html" class="nav-link active-nav">About Us</a>
+                            <a href="feeds.html" class="nav-link">Products</a>
+                            <a href="services.html" class="nav-link">Services</a>
+                            <a href="projects.html" class="nav-link">Projects</a>
+                            <a href="blog.html" class="nav-link">Blog</a>
+                            <a href="contact.html" class="nav-link">Contact</a>
+                        </div>
+
+                        <!-- Mobile Menu (Hidden by default, slides down when toggled) -->
+                        <div id="mobile-menu" class="hidden md:hidden flex-col bg-white shadow-lg p-4 rounded-lg">
+                            <a href="index.html" class="nav-link block py-2">Home</a>
+                            <a href="aboutus.html" class="nav-link block py-2">About Us</a>
+                            <a href="feeds.html" class="nav-link block py-2">Feeds</a>
+                            <a href="services.html" class="nav-link block py-2">Services</a>
+                            <a href="projects.html" class="nav-link block py-2">Projects</a>
+                            <a href="blog.html" class="nav-link block py-2">Blog</a>
+                            <a href="contact.html" class="nav-link block py-2">Contact</a>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+
+    <!-- About Us Hero Section -->
+    <div class="relative bg-white-900 text-black py-20">
+        <div class="container mx-auto px-4">
+            <h1 class="text-4xl md:text-2xl font-bold mb-4">About Target Ingredients</h1>
+            <p class="text-x0.5 text-green-900">Your Trusted Partner in Animal Nutrition</p>
+        </div>
+        <div class="absolute bottom-0 right-0 opacity-10">
+            <img src="img/trlogo-removebg-preview 1.png" alt="Watermark" class="w-64 h-64">
+        </div>
+    </div>
+
+    <!-- Company Overview Section -->
+    <div class="container mx-auto px-4 py-16" style="margin-top: -95px;">
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+            <div>
+                <h2 class="text-3xl font-bold mb-6 text-green-900">Our Story</h2>
+                <p class="text-gray-700 mb-4">Target Ingredients Limited is a recognized leader in the distribution of premium veterinary, food, feed-raw materials and additives. Established with a clear vision and unwavering dedication to excellence, our company has rapidly emerged as a trusted partner for clients across the veterinary, food and feed industries.</p>
+                <p class="text-gray-700">With a comprehensive portfolio of high-quality products and a commitment to sustainability and innovation, we are proud to contribute to the advancement of animal nutrition and welfare worldwide.</p>
+            </div>
+            <div class="bg-green-50 p-8 rounded-lg shadow-lg">
+                <h3 class="text-2xl font-bold mb-4 text-green-900">Our Mission</h3>
+                <p class="text-gray-700 mb-6">To provide premium veterinary, food, feed-raw materials and additives, ensuring safety, efficacy and sustainability.</p>
+                
+                <h3 class="text-2xl font-bold mb-4 text-green-900">Our Vision</h3>
+                <p class="text-gray-700">To be the trusted partner of choice in advancing animal nutrition, fostering sustainability, and driving positive change globally.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Core Values Section -->
+    <div class="bg-gray-100 py-16">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold mb-12 text-center text-green-900">Our Core Values</h2>
+            <div class="grid md:grid-cols-4 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-lg text-center">
+                    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-heart text-2xl text-green-600"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-green-900">Integrity</h3>
+                    <p class="text-gray-600">We conduct our business with the highest standards of honesty and transparency.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg text-center">
+                    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-lightbulb text-2xl text-green-600"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-green-900">Innovation</h3>
+                    <p class="text-gray-600">We embrace creativity to continuously improve our products and services.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg text-center">
+                    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-leaf text-2xl text-green-600"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-green-900">Sustainability</h3>
+                    <p class="text-gray-600">We are committed to environmental responsibility and ethical practices.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg text-center">
+                    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-users text-2xl text-green-600"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-green-900">Customer Centric</h3>
+                    <p class="text-gray-600">We put our customers' needs first and ensure a great experience.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="relative text-white py-12" style="background-color: #025743;">
+        <div class="container mx-auto px-4">
+            <div class="text-center">
+                <img src="img/Target Ingredients A 3.png" alt="Logo" class="mx-auto mb-4" style="width: 150px; height: 60px;" />
+                <div class="mt-4">
+                    <div class="text-sm text-gray-400">Have any questions?</div>
+                    <div class="font-bold">+254-746-056-624</div>
+                </div>
+                <div class="mt-4">
+                    <div class="text-sm text-gray-400">Our office address</div>
+                    <div class="font-bold">Premier Bldg Suite 1, Along Msa Rd, Syokimau, Kenya</div>
+                </div>
+                <div class="flex justify-center space-x-4 mt-4">
+                    <a href="#" class="hover:text-green-400"><i class="fab fa-facebook"></i></a>
+                    <a href="#" class="hover:text-green-400"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="hover:text-green-400"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+        <img src="img/trlogo-removebg-preview 1.png" alt="Corner Image" class="absolute bottom-0 right-0 opacity-10" style="width: 310px; height: 350px;">
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('menu-toggle')?.addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            if (mobileMenu) {
+                mobileMenu.style.display = mobileMenu.style.display === 'block' ? 'none' : 'block';
+            }
+        });
+    </script>
+</body>
+</html>

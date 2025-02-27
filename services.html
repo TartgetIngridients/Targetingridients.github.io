@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <head>
+        <title>Target Ingredients Limited</title>
+        <link rel="icon" type="image/png" href="img/trlogo-removebg-preview.png">
+    </head>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+    <style>
+        body {
+            font-family: 'Poppins', 'Roboto', sans-serif;
+        }
+
+        .top-bar {
+            background-color: #025743;
+            border-top: 2px solid #FF671F;
+            height: auto; /* Adjusted to fit content */
+            padding-bottom: 20px; /* Reduced padding for mobile */
+        }
+
+        .nav-bar {
+            background-color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: calc(100% - 4rem);
+            z-index: 1000;
+            margin-top: 20px;
+            font-size: 15px;
+            color: rgba(37, 34, 32, 0.9);
+        }
+
+        .nav-link {
+            padding: 1rem;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: #FF671F;
+        }
+
+        .active-nav {
+            background-color: #025743;
+            color: white;
+            border-radius: 5px;
+            height: 48.5px;
+            margin-top: 5px;
+            margin-bottom: 5px;
+        }
+
+        .contact-icon {
+            background: #FF671F;
+            padding: 0.5rem;
+            border-radius: 10px;
+        }
+
+        .nav-container {
+            position: relative;
+        }
+
+        /* Mobile Menu */
+        #menu-toggle {
+            cursor: pointer;
+        }
+
+        #mobile-menu {
+            display: none;
+            flex-direction: column;
+            width: 100%;
+            background: white;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            padding: 1rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            z-index: 999;
+        }
+
+        #mobile-menu a {
+            padding: 0.75rem 1rem;
+            display: block;
+            text-align: center;
+        }
+
+        /* Only show mobile menu on small screens */
+        @media (max-width: 767px) {
+            .nav-bar {
+                position: relative;
+                top: 0;
+                left: 0;
+                transform: none;
+                width: 100%;
+                margin-top: 0;
+            }
+
+            #mobile-menu {
+                display: none; /* Hidden by default */
+            }
+
+            .nav-container {
+                position: static;
+            }
+
+            .top-bar {
+                height: auto; /* Adjust height for mobile */
+                padding-bottom: 10px; /* Reduce padding for mobile */
+            }
+
+            .contact-info {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                margin-top: 10px; /* Add spacing for mobile */
+            }
+
+            .contact-info div {
+                margin-top: 10px; /* Add spacing between contact items */
+            }
+        }
+
+        /* Keep desktop menu exactly the same */
+        @media (min-width: 768px) {
+            #mobile-menu {
+                display: none !important;
+            }
+
+            .contact-info {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+            }
+        }
+
+        /* Rest of your existing styles... */
+        .hero-overlay {
+            /* background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)); */
+        }
+
+        .service-card {
+            transition: transform 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .dark-section {
+            background-color: #1a1a1a;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .dark-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 50px;
+            background: linear-gradient(to bottom right, transparent 49%, #1a1a1a 50%);
+        }
+    </style>
+</head>
+
+<body class="bg-white">
+
+    <!-- Top Bar -->
+    <div class="top-bar text-white py-4">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+
+                <!-- Logo and Brand -->
+                <div class="flex items-center justify-between w-full md:w-auto">
+                    <img src="img/1.png" alt="Target Ingredients Logo" class="h-12 md:h-20" />
+
+                    <!-- Mobile Menu Button (Only visible on small screens) -->
+                    <button id="menu-toggle" class="block md:hidden text-white focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+
+                <!-- Contact Info (Visible on both mobile and desktop) -->
+                <div class="contact-info space-y-4 md:space-y-0 md:space-x-8 flex flex-col md:flex-row">
+                    <div>
+                        <div class="text-sm text-gray-400">Have any questions?</div>
+                        <div class="font-bold">+254-746-056-624</div>
+                    </div>
+                
+                    <div>
+                        <div class="text-sm text-gray-400">Our office address</div>
+                        <div class="font-bold text-sm md:text-base">Along Msa rd,Syokimau, Nairobi, Kenya</div>
+                    </div>
+                </div>
+
+
+
+                
+                
+            </div>
+        </div>
+
+        <!-- Navigation Container -->
+        <div class="nav-container">
+            <!-- Navigation Bar -->
+            <nav class="nav-bar">
+                <div class="container mx-auto px-4">
+                    <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+
+                        <!-- Desktop Menu (Hidden on mobile) -->
+                        <div class="hidden md:flex flex-wrap justify-center space-x-1">
+                            <a href="index.html" class="nav-link ">Home</a>
+                            <a href="aboutus.html" class="nav-link ">About Us</a>
+
+                            <a href="feeds.html" class="nav-link">Products</a>
+                            <a href="services.html" class="nav-link active-nav">Services</a>
+                            <a href="projects.html" class="nav-link">Projects</a>
+                            <a href="blog.html" class="nav-link">Blog</a>
+                            <a href="contact.html" class="nav-link">Contact</a>
+                        </div>
+
+                        <!-- Mobile Menu (Hidden by default, slides down when toggled) -->
+                        <div id="mobile-menu" class="hidden md:hidden flex-col bg-white shadow-lg p-4 rounded-lg">
+                            <a href="index.html" class="nav-link block py-2">Home</a>
+                            <a href="aboutus.html" class="nav-link block py-2">About Us</a>
+                            <a href="feeds.html" class="nav-link block py-2">Feeds</a>
+                            <a href="services.html" class="nav-link block py-2">Services</a>
+                            <a href="projects.html" class="nav-link block py-2">Projects</a>
+                            <a href="blog.html" class="nav-link block py-2">Blog</a>
+                            <a href="contact.html" class="nav-link block py-2">Contact</a>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+
+
+
+
+
+    <section class="py-16 bg-gray-50">
+        <style>
+            .service-section {
+                background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+            }
+    
+            .service-card {
+                background: white;
+                border-radius: 15px;
+                transition: all 0.3s ease;
+                border: 1px solid rgba(2, 87, 67, 0.1);
+                overflow: hidden;
+                position: relative;
+            }
+    
+            .service-card::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 4px;
+                background: #025743;
+                transform: scaleX(0);
+                transition: transform 0.3s ease;
+                transform-origin: left;
+            }
+    
+            .service-card:hover {
+                transform: translateY(-10px);
+                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            }
+    
+            .service-card:hover::before {
+                transform: scaleX(1);
+            }
+    
+            .icon-wrapper {
+                position: relative;
+                transition: all 0.3s ease;
+            }
+    
+            .icon-wrapper::after {
+                content: '';
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                background: rgba(2, 87, 67, 0.1);
+                border-radius: 50%;
+                top: 0;
+                left: 0;
+                z-index: -1;
+                transform: scale(0.8);
+                transition: all 0.3s ease;
+            }
+    
+            .service-card:hover .icon-wrapper {
+                transform: rotateY(180deg);
+            }
+    
+            .service-card:hover .icon-wrapper::after {
+                transform: scale(1.2);
+            }
+    
+            .cta-button {
+                position: relative;
+                overflow: hidden;
+                transition: all 0.3s ease;
+            }
+    
+            .cta-button::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: -100%;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(
+                    90deg,
+                    rgba(255, 255, 255, 0.2),
+                    rgba(255, 255, 255, 0)
+                );
+                transition: all 0.5s ease;
+            }
+    
+            .cta-button:hover::before {
+                left: 100%;
+            }
+    
+            .section-title {
+                position: relative;
+                display: inline-block;
+            }
+    
+            .section-title::after {
+                content: '';
+                position: absolute;
+                bottom: -10px;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 50px;
+                height: 3px;
+                background: #FF671F;
+            }
+    
+            @keyframes float {
+                0% { transform: translateY(0px); }
+                50% { transform: translateY(-10px); }
+                100% { transform: translateY(0px); }
+            }
+    
+            .floating-icon {
+                animation: float 3s ease-in-out infinite;
+            }
+        </style>
+    
+        <div class="container mx-auto px-4" style="margin-top: 50px;">
+            <!-- Section Header -->
+            <div class="text-center mb-16">
+                <h2 class="section-title text-4xl font-bold mb-6" style="color: #025743;">Our Services</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Elevating the feed industry with innovative solutions and premium ingredients for optimal animal nutrition.</p>
+            </div>
+    
+            <!-- Services Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Feed Formulation -->
+                <div class="service-card p-8">
+                    <div class="icon-wrapper w-16 h-16 rounded-full flex items-center justify-center mb-6 mx-auto floating-icon">
+                        <i class="fas fa-flask text-2xl" style="color: #025743;"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-center mb-4" style="color: #025743;">Technical and nutrition support</h3>
+                    <p class="text-gray-600 text-center">We provide expert assistance to our customers in areas such as feed formulation and best feeding practices.</p>
+                </div>
+    
+                <!-- Quality Testing -->
+                <div class="service-card p-8">
+                    <div class="icon-wrapper w-16 h-16 rounded-full flex items-center justify-center mb-6 mx-auto floating-icon">
+                        <i class="fas fa-microscope text-2xl" style="color: #025743;"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-center mb-4" style="color: #025743;">Product quality and safety</h3>
+                    <p class="text-gray-600 text-center">We assure our customers that our feed additives meet the highest quality standards and comply with the industry regulations and guidelines I.e Kebs certification</p>
+                </div>
+    
+                <!-- Supply Chain -->
+                <div class="service-card p-8">
+                    <div class="icon-wrapper w-16 h-16 rounded-full flex items-center justify-center mb-6 mx-auto floating-icon">
+                        <i class="fas fa-link text-2xl" style="color: #025743;"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-center mb-4" style="color: #025743;">⁠Eductional Rescorces</h3>
+                    <p class="text-gray-600 text-center"> We develop and share informative content , blog I.e articles , blog ,guides or webinars on topics related to animal nutrients and animal management.</p>
+                </div>
+    
+             
+    
+                <!-- Regulatory Compliance -->
+                <div class="service-card p-8">
+                    <div class="icon-wrapper w-16 h-16 rounded-full flex items-center justify-center mb-6 mx-auto floating-icon">
+                        <i class="fas fa-certificate text-2xl" style="color: #025743;"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-center mb-4" style="color: #025743;">⁠Reilability and Consistency</h3>
+                    <p class="text-gray-600 text-center"> we ensure timely delivery and consistent product availability.</p>
+                </div>
+    
+                <!-- Training -->
+                <div class="service-card p-8">
+                    <div class="icon-wrapper w-16 h-16 rounded-full flex items-center justify-center mb-6 mx-auto floating-icon">
+                        <i class="fas fa-chalkboard-teacher text-2xl" style="color: #025743;"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-center mb-4" style="color: #025743;">⁠Engage in open communication</h3>
+                    <p class="text-gray-600 text-center">Maintain transparent communication with our customers at all times .</p>
+                </div>
+                   <!-- Veterinary Support -->
+                   <div class="service-card p-8">
+                    <div class="icon-wrapper w-16 h-16 rounded-full flex items-center justify-center mb-6 mx-auto floating-icon">
+                        <i class="fas fa-stethoscope text-2xl" style="color: #FF671F;"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-center mb-4" style="color: #FF671F;">More info</h3>
+                    <p class="text-gray-600 text-center">⁠we offer additional services that complement our products that’s are tailored
+                         to best suit you as a farmer or manufacturer I.e digital tools for feed formulation, regular updates on industry trends and personalized customer service support.</p>
+                </div>
+            </div>
+    
+            <!-- CTA Button -->
+            <div class="flex flex-col justify-center items-center mt-16">
+                <a href="contact.html">
+                    <button class="px-8 py-4 text-white rounded-lg text-lg font-semibold" style="background-color: #FF671F;">
+                        Request a Service
+                    </button>
+                </a>
+            </div>
+            
+            
+
+       
+            
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Footer -->
+    <footer class="relative text-white py-12" style="background-color: #025743;">
+        <div class="container mx-auto px-4">
+            <div class="text-center">
+                <img src="img/Target Ingredients A 3.png" alt="Logo" class="mx-auto mb-4"
+                    style="width: 150px; height: 60px;" />
+                <div style="margin-top: 20px;">
+                    <div class="text-sm text-gray-400">Have any questions?</div>
+                    <div class="font-bold"> +254-746-056-624</div>
+                </div>
+                <div style="margin-top: 20px;">
+                    <div class="text-sm text-gray-400">Our office address</div>
+                    <div class="font-bold">Premier Bldg Suite 1, Along Msa Rd, Syokimau, Kenya</div>
+                </div>
+                <div class="flex justify-center space-x-4" style="margin-top: 20px;">
+                    <a href="#" class="hover:text-green-400"><i class="fab fa-facebook"></i></a>
+                    <a href="#" class="hover:text-green-400"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="hover:text-green-400"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Corner Image -->
+        <img src="img/trlogo-removebg-preview 1.png" alt="Corner Image" class="absolute bottom-0 right-0 opacity-10"
+            style="width: 310px; height: 350px;">
+
+        <!-- Scroll to top button -->
+        <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})"
+            class="fixed bottom-8 right-8 hover:bg-green-600 text-white rounded-full p-3 shadow-lg transition-all duration-300"
+            style="opacity: 0; visibility: hidden; background-color: #FFCA0D;" id="scrollToTop">
+            <i class="fas fa-arrow-up"></i>
+        </button>
+    </footer>
+
+    <script>
+        // Show/hide scroll to top button based on scroll position
+        window.onscroll = function () {
+            const button = document.getElementById('scrollToTop');
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                button.style.opacity = '1';
+                button.style.visibility = 'visible';
+            } else {
+                button.style.opacity = '0';
+                button.style.visibility = 'hidden';
+            }
+        };
+    </script>
+        <script>
+            document.getElementById("menu-toggle").addEventListener("click", function () {
+                var menu = document.getElementById("mobile-menu");
+                if (menu.style.display === "block") {
+                    menu.style.display = "none";
+                } else {
+                    menu.style.display = "block";
+                }
+            });
+        </script>
+</body>
+
+</html>
