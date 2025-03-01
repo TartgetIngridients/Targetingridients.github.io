@@ -4,10 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <head>
         <title>Target Ingredients Limited</title>
         <link rel="icon" type="image/png" href="img/trlogo-removebg-preview.png">
     </head>
+
+
+    <!-- <title>Target Ingredients Limited</title> -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
@@ -118,15 +122,7 @@
             }
 
             .contact-info {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                text-align: center;
-                margin-top: 10px; /* Add spacing for mobile */
-            }
-
-            .contact-info div {
-                margin-top: 10px; /* Add spacing between contact items */
+                display: none; /* Hide contact info in mobile view */
             }
         }
 
@@ -198,7 +194,7 @@
                         <div class="text-sm text-gray-400">Have any questions?</div>
                         <div class="font-bold">+254-746-056-624</div>
                     </div>
-                
+
                     <div>
                         <div class="text-sm text-gray-400">Our office address</div>
                         <div class="font-bold text-sm md:text-base">Along Msa rd,Syokimau, Nairobi, Kenya</div>
@@ -207,8 +203,8 @@
 
 
 
-                
-                
+
+
             </div>
         </div>
 
@@ -235,7 +231,7 @@
                         <div id="mobile-menu" class="hidden md:hidden flex-col bg-white shadow-lg p-4 rounded-lg">
                             <a href="index.html" class="nav-link block py-2">Home</a>
                             <a href="aboutus.html" class="nav-link block py-2">About Us</a>
-                            <a href="feeds.html" class="nav-link block py-2">Feeds</a>
+                            <a href="feeds.html" class="nav-link block py-2">Products</a>
                             <a href="services.html" class="nav-link block py-2">Services</a>
                             <a href="projects.html" class="nav-link block py-2">Projects</a>
                             <a href="blog.html" class="nav-link block py-2">Blog</a>
@@ -256,7 +252,7 @@
             .service-section {
                 background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
             }
-    
+
             .service-card {
                 background: white;
                 border-radius: 15px;
@@ -265,7 +261,7 @@
                 overflow: hidden;
                 position: relative;
             }
-    
+
             .service-card::before {
                 content: '';
                 position: absolute;
@@ -278,21 +274,21 @@
                 transition: transform 0.3s ease;
                 transform-origin: left;
             }
-    
+
             .service-card:hover {
                 transform: translateY(-10px);
                 box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
             }
-    
+
             .service-card:hover::before {
                 transform: scaleX(1);
             }
-    
+
             .icon-wrapper {
                 position: relative;
                 transition: all 0.3s ease;
             }
-    
+
             .icon-wrapper::after {
                 content: '';
                 position: absolute;
@@ -306,21 +302,21 @@
                 transform: scale(0.8);
                 transition: all 0.3s ease;
             }
-    
+
             .service-card:hover .icon-wrapper {
                 transform: rotateY(180deg);
             }
-    
+
             .service-card:hover .icon-wrapper::after {
                 transform: scale(1.2);
             }
-    
+
             .cta-button {
                 position: relative;
                 overflow: hidden;
                 transition: all 0.3s ease;
             }
-    
+
             .cta-button::before {
                 content: '';
                 position: absolute;
@@ -335,16 +331,16 @@
                 );
                 transition: all 0.5s ease;
             }
-    
+
             .cta-button:hover::before {
                 left: 100%;
             }
-    
+
             .section-title {
                 position: relative;
                 display: inline-block;
             }
-    
+
             .section-title::after {
                 content: '';
                 position: absolute;
@@ -355,25 +351,25 @@
                 height: 3px;
                 background: #FF671F;
             }
-    
+
             @keyframes float {
                 0% { transform: translateY(0px); }
                 50% { transform: translateY(-10px); }
                 100% { transform: translateY(0px); }
             }
-    
+
             .floating-icon {
                 animation: float 3s ease-in-out infinite;
             }
         </style>
-    
+
         <div class="container mx-auto px-4" style="margin-top: 50px;">
             <!-- Section Header -->
             <div class="text-center mb-16">
                 <h2 class="section-title text-4xl font-bold mb-6" style="color: #025743;">Our Services</h2>
                 <p class="text-gray-600 max-w-2xl mx-auto">Elevating the feed industry with innovative solutions and premium ingredients for optimal animal nutrition.</p>
             </div>
-    
+
             <!-- Services Grid -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Feed Formulation -->
@@ -384,16 +380,16 @@
                     <h3 class="text-xl font-semibold text-center mb-4" style="color: #025743;">Technical and nutrition support</h3>
                     <p class="text-gray-600 text-center">We provide expert assistance to our customers in areas such as feed formulation and best feeding practices.</p>
                 </div>
-    
+
                 <!-- Quality Testing -->
                 <div class="service-card p-8">
                     <div class="icon-wrapper w-16 h-16 rounded-full flex items-center justify-center mb-6 mx-auto floating-icon">
                         <i class="fas fa-microscope text-2xl" style="color: #025743;"></i>
                     </div>
                     <h3 class="text-xl font-semibold text-center mb-4" style="color: #025743;">Product quality and safety</h3>
-                    <p class="text-gray-600 text-center">We assure our customers that our feed additives meet the highest quality standards and comply with the industry regulations and guidelines I.e Kebs certification</p>
+                    <p class="text-gray-600 text-center">We assure our customers that our feed additives meet the highest quality standards and comply with the industry regulations and guidelines I.e Kebs Certifications.</p>
                 </div>
-    
+
                 <!-- Supply Chain -->
                 <div class="service-card p-8">
                     <div class="icon-wrapper w-16 h-16 rounded-full flex items-center justify-center mb-6 mx-auto floating-icon">
@@ -402,9 +398,9 @@
                     <h3 class="text-xl font-semibold text-center mb-4" style="color: #025743;">⁠Eductional Rescorces</h3>
                     <p class="text-gray-600 text-center"> We develop and share informative content , blog I.e articles , blog ,guides or webinars on topics related to animal nutrients and animal management.</p>
                 </div>
-    
-             
-    
+
+
+
                 <!-- Regulatory Compliance -->
                 <div class="service-card p-8">
                     <div class="icon-wrapper w-16 h-16 rounded-full flex items-center justify-center mb-6 mx-auto floating-icon">
@@ -413,7 +409,7 @@
                     <h3 class="text-xl font-semibold text-center mb-4" style="color: #025743;">⁠Reilability and Consistency</h3>
                     <p class="text-gray-600 text-center"> we ensure timely delivery and consistent product availability.</p>
                 </div>
-    
+
                 <!-- Training -->
                 <div class="service-card p-8">
                     <div class="icon-wrapper w-16 h-16 rounded-full flex items-center justify-center mb-6 mx-auto floating-icon">
@@ -428,11 +424,11 @@
                         <i class="fas fa-stethoscope text-2xl" style="color: #FF671F;"></i>
                     </div>
                     <h3 class="text-xl font-semibold text-center mb-4" style="color: #FF671F;">More info</h3>
-                    <p class="text-gray-600 text-center">⁠we offer additional services that complement our products that’s are tailored
+                    <p class="text-gray-600 text-center">⁠we offer additional services that complement our products that are tailored
                          to best suit you as a farmer or manufacturer I.e digital tools for feed formulation, regular updates on industry trends and personalized customer service support.</p>
                 </div>
             </div>
-    
+
             <!-- CTA Button -->
             <div class="flex flex-col justify-center items-center mt-16">
                 <a href="contact.html">
@@ -441,11 +437,11 @@
                     </button>
                 </a>
             </div>
-            
-            
 
-       
-            
+
+
+
+
             </div>
         </div>
     </section>
@@ -491,7 +487,7 @@
                 </div>
                 <div style="margin-top: 20px;">
                     <div class="text-sm text-gray-400">Our office address</div>
-                    <div class="font-bold">Premier Bldg Suite 1, Along Msa Rd, Syokimau, Kenya</div>
+                    <div class="font-bold">Along Msa rd,Syokimau, Nairobi, Kenya</div>
                 </div>
                 <div class="flex justify-center space-x-4" style="margin-top: 20px;">
                     <a href="#" class="hover:text-green-400"><i class="fab fa-facebook"></i></a>
