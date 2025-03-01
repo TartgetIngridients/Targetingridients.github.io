@@ -4,10 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <head>
         <title>Target Ingredients Limited</title>
         <link rel="icon" type="image/png" href="img/trlogo-removebg-preview.png">
     </head>
+
+
+    <!-- <title>Target Ingredients Limited</title> -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
@@ -118,15 +122,7 @@
             }
 
             .contact-info {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                text-align: center;
-                margin-top: 10px; /* Add spacing for mobile */
-            }
-
-            .contact-info div {
-                margin-top: 10px; /* Add spacing between contact items */
+                display: none; /* Hide contact info in mobile view */
             }
         }
 
@@ -198,7 +194,7 @@
                         <div class="text-sm text-gray-400">Have any questions?</div>
                         <div class="font-bold">+254-746-056-624</div>
                     </div>
-                
+
                     <div>
                         <div class="text-sm text-gray-400">Our office address</div>
                         <div class="font-bold text-sm md:text-base">Along Msa rd,Syokimau, Nairobi, Kenya</div>
@@ -207,8 +203,8 @@
 
 
 
-                
-                
+
+
             </div>
         </div>
 
@@ -235,7 +231,7 @@
                         <div id="mobile-menu" class="hidden md:hidden flex-col bg-white shadow-lg p-4 rounded-lg">
                             <a href="index.html" class="nav-link block py-2">Home</a>
                             <a href="aboutus.html" class="nav-link block py-2">About Us</a>
-                            <a href="feeds.html" class="nav-link block py-2">Feeds</a>
+                            <a href="feeds.html" class="nav-link block py-2">Products</a>
                             <a href="services.html" class="nav-link block py-2">Services</a>
                             <a href="projects.html" class="nav-link block py-2">Projects</a>
                             <a href="blog.html" class="nav-link block py-2">Blog</a>
@@ -252,19 +248,10 @@
     <main class="container mx-auto px-4 py-8" style="margin-top:70px;">
         <section class="mb-12">
             <h2 class="text-3xl font-bold mb-6 text-center">Our Projects </h2>
-            <div class="grid md:grid-cols-3 gap-6">
+            <p style="text-align: center;" class="text-x0.5 text-green-900">A story that we have worked with cooperatives to help local farmers with better quality feed additives and having to give them enough support on educating them on the products and helping them come up with feed formulations that are tailored made to fit each one of them , thus having their animals improve productivity that corresponds with their returns .</p>
+            <div class="grid md:grid-cols-3 gap-6" style="margin-top: 30px;">
 
 
-
-
-
-
-
-
-                
-
-
-                
                 <div class="bg-white shadow-md rounded-lg overflow-hidden transition-transform duration-500 ease-in-out transform hover:scale-105">
                     <div class="overflow-hidden">
                         <img src="img/formular.jpg" class="w-full h-56 object-cover transition-transform duration-500 ease-in-out transform hover:scale-110">
@@ -283,7 +270,7 @@
                         <h3 class="font-bold text-sm mb-2">Create biodegradable or recyclable feed packaging..</h3>
                     </div>
                 </div>
-                
+
 
 
 
@@ -317,7 +304,7 @@
                         <h3 class="font-bold text-sm mb-2">Conduct studies on nutritional benefits and market viability.</h3>
                     </div>
                 </div>
-                
+
 
 
 
@@ -331,7 +318,7 @@
                 </div>
 
 
-          
+
             </div>
         </section>
 
@@ -406,7 +393,7 @@
                 </div>
                 <div style="margin-top: 20px;">
                     <div class="text-sm text-gray-400">Our office address</div>
-                    <div class="font-bold">Premier Bldg Suite 1, Along Msa Rd, Syokimau, Kenya</div>
+                    <div class="font-bold">Along Msa rd,Syokimau, Nairobi, Kenya</div>
                 </div>
                 <div class="flex justify-center space-x-4" style="margin-top: 20px;">
                     <a href="#" class="hover:text-green-400"><i class="fab fa-facebook"></i></a>
