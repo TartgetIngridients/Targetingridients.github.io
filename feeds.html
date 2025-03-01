@@ -88,7 +88,12 @@
             text-align: center;
         }
 
+        /* Hide contact info in mobile view */
         @media (max-width: 767px) {
+            .contact-info {
+                display: none;
+            }
+
             .nav-bar {
                 position: relative;
                 top: 0;
@@ -109,20 +114,9 @@
             .top-bar {
                 padding-bottom: 10px;
             }
-
-            .contact-info {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                text-align: center;
-                margin-top: 10px;
-            }
-
-            .contact-info div {
-                margin-top: 10px;
-            }
         }
 
+        /* Show contact info in desktop view */
         @media (min-width: 768px) {
             #mobile-menu {
                 display: none !important;
@@ -391,7 +385,7 @@
                     <div id="mobile-menu" class="hidden md:hidden flex-col bg-white shadow-lg p-4 rounded-lg">
                         <a href="index.html" class="nav-link block py-2">Home</a>
                         <a href="aboutus.html" class="nav-link block py-2">About Us</a>
-                        <a href="feeds.html" class="nav-link block py-2">Feeds</a>
+                        <a href="feeds.html" class="nav-link block py-2">Products</a>
                         <a href="services.html" class="nav-link block py-2">Services</a>
                         <a href="projects.html" class="nav-link block py-2">Projects</a>
                         <a href="blog.html" class="nav-link block py-2">Blog</a>
@@ -459,13 +453,11 @@
                 <p class="text-gray-600">
                     1. Egg Boost Layer Premix <br>
                     2. Grow Boost Growers Premix <br>
-                    3. Pigpro Sow Premix <br>
-                    4. Milk Boost High Phosphorus <br>
-                    5. Mineral Supplement <br>
-                    6. Chickpro Starter Premix <br>
-                    7. Milk Master Dairy Premix <br>
-                    8. Mature Boost Stock Lick Mineral Supplement <br>
-                    9. Meat Max Broiler Premix
+                    3. Pig pro Sow Premix <br>
+                    4. Chick pro Starter Premix <br>
+                    5. Milk Master Dairy Premix <br>
+                    6. Meat Max Broiler Premix<br>
+                    7. Dog feed premix<br>
                 </p>
             </div>
 
@@ -476,7 +468,7 @@
                     2. Acidifiers <br>
                     3. DI-Methionine <br>
                     4. Salinomycin <br>
-                    5. Threonine
+                    5. Threonine<br>
                 </p>
             </div>
 
@@ -484,7 +476,7 @@
                 <h3 class="text-lg font-bold text-green-700 mb-2">
                     Toxin Binder</h3>
                 <p class="text-gray-600">
-                    1.Nutri Toxin Binder
+                    1.Nutri Toxin Binder<br>
                 </p>
             </div>
 
@@ -493,10 +485,12 @@
                 <p class="text-gray-600">
                     1. Dicalcium Granules White (DCP) <br>
                     2. Monocalcium Phosphate (MCP) <br>
-                    3. Feed Lime <br>
-                    4. Sodium Chloride (Feed Grade) <br>
-                    5. Choline Chloride <br>
-                    6. Sodium Bicarbonate
+                    3. Milk Boost High Phosphorus <br>
+                    4. Mature Boost Stock Lick Mineral Supplement <br>
+                    5. Feed Lime <br>
+                    6. Sodium Chloride (Feed Grade) <br>
+                    7. Choline Chloride <br>
+                    8. Sodium Bicarbonate<br>
                 </p>
             </div>
 
@@ -524,7 +518,7 @@
                 </div>
                 <div style="margin-top: 20px;">
                     <div class="text-sm text-gray-400">Our office address</div>
-                    <div class="font-bold">Premier Bldg Suite 1, Along Msa Rd, Syokimau, Kenya</div>
+                    <div class="font-bold">Along Msa rd,Syokimau, Nairobi, Kenya</div>
                 </div>
                 <div class="flex justify-center space-x-4" style="margin-top: 20px;">
                     <a href="#" class="hover:text-green-400"><i class="fab fa-facebook"></i></a>
@@ -547,7 +541,7 @@
             'DCP': {
                 title: 'DCP (Dicalcium Phosphate)',
                 benefits: [
-                    'Contains minimum 21% calcium and 18% phosphorus',
+                    'Contains minimum 16% calcium and 22% phosphorus',
                     'Easily digestible and absorbable by livestock',
                     'Accelerates growth and development',
                     'Shortens fattening period',
